@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Graph.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="KinematicSteeringOutput.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SteeringBehaviour.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Steering\SteeringOutput.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene1.cpp">
+      <Filter>Source\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene2.cpp">
+      <Filter>Source\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="Steering\KinematicBody.cpp">
+      <Filter>Source\Bodies</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticBody.cpp">
+      <Filter>Source\Bodies</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBody.cpp">
+      <Filter>Source\Bodies</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source\Bodies</Filter>
+    </ClCompile>
+    <ClCompile Include="Body.cpp">
+      <Filter>Source\Bodies</Filter>
+    </ClCompile>
+    <ClCompile Include="Flee.cpp">
+      <Filter>Source\AI_Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="Seek.cpp">
+      <Filter>Source\AI_Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="KinematicSeek.cpp">
+      <Filter>Source\AI_Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticImage.cpp">
+      <Filter>Source\Bodies</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameManager.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="KinematicSteeringOutput.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SteeringBehaviour.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Steering\SteeringOutput.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Body.h">
+      <Filter>Headers\Bodies</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>Headers\Bodies</Filter>
+    </ClInclude>
+    <ClInclude Include="Steering\KinematicBody.h">
+      <Filter>Headers\Bodies</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBody.h">
+      <Filter>Headers\Bodies</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticBody.h">
+      <Filter>Headers\Bodies</Filter>
+    </ClInclude>
+    <ClInclude Include="Flee.h">
+      <Filter>Headers\AI_Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="KinematicSeek.h">
+      <Filter>Headers\AI_Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="Seek.h">
+      <Filter>Headers\AI_Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Headers\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene1.h">
+      <Filter>Headers\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene2.h">
+      <Filter>Headers\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticImage.h">
+      <Filter>Headers\Bodies</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{28d6b763-8920-4e65-8323-bef52d0e0add}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{0ffb753e-4f87-4359-960f-d36bfe5bdde7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Scenes">
+      <UniqueIdentifier>{b2b7c52e-3fad-408e-8c71-d52b1cd1c009}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Bodies">
+      <UniqueIdentifier>{04bfa6b2-3bb6-4d9c-9199-e2d02d3b3a80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\AI_Movement">
+      <UniqueIdentifier>{33090fed-ab46-4918-9713-90eb32eeb120}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Bodies">
+      <UniqueIdentifier>{21a5be99-3b67-402b-9fde-57f0c765d760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\AI_Movement">
+      <UniqueIdentifier>{9a8ecd0a-8a7d-468c-b9e8-e6759e51a8ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Scenes">
+      <UniqueIdentifier>{55693013-fb55-409a-b83d-520649c7e841}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
