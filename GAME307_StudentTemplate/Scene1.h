@@ -13,8 +13,8 @@ using namespace MATH;
 class Scene1 : public Scene {
 private:
 	SDL_Window *window;
-	float xAxis = 25.0f;
-	float yAxis = 15.0f;
+	float xAxis;
+	float yAxis;
 	SDL_Renderer* renderer;
 	Matrix4 projectionMatrix;
     Matrix4 inverseProjection;

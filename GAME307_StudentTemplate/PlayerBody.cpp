@@ -131,7 +131,7 @@ void PlayerBody::HandleEvents( const SDL_Event& event )
             
             // This section is for seeing how to use acceleration rather than velocity
             // for player movement.
-            case SDL_SCANCODE_DOWN:
+            /*case SDL_SCANCODE_DOWN:
                 accel.y = 0.0;
                 break;
             case SDL_SCANCODE_UP:
@@ -142,7 +142,7 @@ void PlayerBody::HandleEvents( const SDL_Event& event )
                 break;
             case SDL_SCANCODE_RIGHT:
                 accel.x = 0.0;
-                break;
+                break;*/
             default:
                 break;
         }
@@ -157,7 +157,7 @@ void PlayerBody::Update( float deltaTime )
     Body::Update( deltaTime );
 
     // This will ensure player body stops at edges
-    float height, width;
+   /* float height, width;
     height = game->getSceneHeight();
     width = game->getSceneWidth();
     
@@ -180,7 +180,7 @@ void PlayerBody::Update( float deltaTime )
     {
         pos.y = height - radius;
         vel.y = 0.0f;
-    }
+    }*/
 }
 
 void PlayerBody::resetToOrigin()

@@ -61,6 +61,9 @@ bool Scene1::OnCreate() {
 	float maxSpeed = 1.0f;
 	float maxRotation = 1.0f;
 
+	xAxis = game->getSceneWidth();
+	yAxis = game->getSceneHeight();
+
 	return true;
 }
 
@@ -68,20 +71,20 @@ void Scene1::OnDestroy() {}
 
 void Scene1::Update(const float deltaTime) {
 	//camera follows player (broken for now)
-	/*SDL_Rect rect = game->getPlayer()->getSDL_Rect();
+	SDL_Rect rect = game->getPlayer()->getSDL_Rect();
 
 	float left, right, top, bottom;
-	left = (game->getPlayer()->getPos().x) - (rect.w / 2.0f);
-	right = (game->getPlayer()->getPos().x) + (rect.w / 2.0f);
-	bottom = (game->getPlayer()->getPos().y) - (rect.h / 2.0f);
-	top = (game->getPlayer()->getPos().y) + (rect.h / 2.0f);
+	left = (game->getPlayer()->getPos().x) - (xAxis / 2.0f);
+	right = (game->getPlayer()->getPos().x) + (xAxis / 2.0f);
+	bottom = (game->getPlayer()->getPos().y) + (yAxis / 2.0f);
+	top = (game->getPlayer()->getPos().y) - (yAxis / 2.0f);
 
 	int w, h;
 	SDL_GetWindowSize(window, &w, &h);
 
 	Matrix4 ndc = MMath::viewportNDC(w, h);
 	Matrix4 ortho = MMath::orthographic(left, right, top, bottom, 0.0f, 1.0f);
-	projectionMatrix = ndc * ortho;*/
+	projectionMatrix = ndc * ortho;
 
 	hunter->Update(deltaTime);
 
