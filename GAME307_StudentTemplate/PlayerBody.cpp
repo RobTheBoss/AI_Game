@@ -128,6 +128,7 @@ void PlayerBody::HandleEvents( const SDL_Event& event )
                 vel.x = 0.0f;
                 if (VMath::mag( vel ) > VERY_SMALL) vel = VMath::normalize( vel ) * maxSpeed;
                 break;
+
             
             // This section is for seeing how to use acceleration rather than velocity
             // for player movement.

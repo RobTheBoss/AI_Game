@@ -100,7 +100,7 @@ void Scene1::Render() {
 	background->render(1.5f);
 
 	// render the player
-	game->RenderPlayer(0.3f);
+	game->RenderPlayer(0.7f);
 
 	//render npc
 	hunter->render(0.2f);
