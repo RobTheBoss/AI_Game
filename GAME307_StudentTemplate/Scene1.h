@@ -20,6 +20,7 @@ private:
     Matrix4 inverseProjection;
 
 	std::unique_ptr<Character> hunter;
+	std::unique_ptr<StaticBody> hunter2;
 	std::unique_ptr<StaticImage> background;
 	std::unique_ptr<StaticImage> darkness;
 

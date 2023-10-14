@@ -50,6 +50,12 @@ bool Scene1::OnCreate() {
 		return false;
 	}
 
+	hunter2 = std::make_unique<StaticBody>(Vec3(0,0,0), 0.0f, 3.0f, 1.0f);
+	if (!hunter2->OnCreate(this) || !hunter2->setTextureWith("Sprites/FaceThing.png"))
+	{
+		return false;
+	}
+
 	background = std::make_unique<StaticImage>(Vec3(12.0f,7.5f,0));
 	if (!background->OnCreate(this) || !background->setTextureWith("Sprites/Background.png"))
 	{
@@ -94,6 +100,11 @@ void Scene1::Update(const float deltaTime) {
 
 	hunter->Update(deltaTime);
 
+	KinematicSteeringOutput* steering = new KinematicSteeringOutput();
+
+	//create kinematic seek
+	hunter2->Update(deltaTime);
+
 	// Update player
 	game->getPlayer()->Update(deltaTime);
 
@@ -112,6 +123,7 @@ void Scene1::Render() {
 
 	//render npc
 	hunter->render(0.2f);
+	hunter2->Render(0.2f);
 
 	//render darkness
 	darkness->render();
