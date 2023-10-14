@@ -21,6 +21,7 @@ private:
 
 	std::unique_ptr<Character> hunter;
 	std::unique_ptr<StaticImage> background;
+	std::unique_ptr<StaticImage> darkness;
 
 public:
 	Scene1(SDL_Window* sdlWindow, GameManager* game_);

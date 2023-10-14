@@ -132,7 +132,7 @@ void PlayerBody::HandleEvents( const SDL_Event& event )
             
             // This section is for seeing how to use acceleration rather than velocity
             // for player movement.
-            /*case SDL_SCANCODE_DOWN:
+            case SDL_SCANCODE_DOWN:
                 accel.y = 0.0;
                 break;
             case SDL_SCANCODE_UP:
@@ -143,7 +143,7 @@ void PlayerBody::HandleEvents( const SDL_Event& event )
                 break;
             case SDL_SCANCODE_RIGHT:
                 accel.x = 0.0;
-                break;*/
+                break;
             default:
                 break;
         }

@@ -43,6 +43,7 @@ public:
 	void Update(float time);
 	void HandleEvents(const SDL_Event& event);
 	void render(float scale = 1.0f);
+	void setPos(Vec3 pos_) { pos = pos_; }
 };
 
 #endif

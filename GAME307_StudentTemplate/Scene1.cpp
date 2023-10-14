@@ -56,6 +56,12 @@ bool Scene1::OnCreate() {
 		return false;
 	}
 
+	darkness = std::make_unique<StaticImage>(Vec3(12.0f, 7.5f, 0));
+	if (!darkness->OnCreate(this) || !darkness->setTextureWith("Sprites/Darkness.png"))
+	{
+		return false;
+	}
+
 	Vec3 position = Vec3(5.0f, 1.0f, 0.0f);
 	float orientation = 0.0f;
 	float maxSpeed = 1.0f;
@@ -90,6 +96,8 @@ void Scene1::Update(const float deltaTime) {
 
 	// Update player
 	game->getPlayer()->Update(deltaTime);
+
+	darkness->setPos(game->getPlayer()->getPos());
 }
 
 void Scene1::Render() {
@@ -104,6 +112,9 @@ void Scene1::Render() {
 
 	//render npc
 	hunter->render(0.2f);
+
+	//render darkness
+	darkness->render();
 
 	SDL_RenderPresent(renderer);
 }
