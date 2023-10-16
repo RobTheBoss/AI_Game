@@ -71,6 +71,7 @@ bool Scene1::OnCreate() {
 	Vec3 position = Vec3(5.0f, 1.0f, 0.0f);
 	float orientation = 0.0f;
 	float maxSpeed = 1.0f;
+	float maxAcceleration = 1.0f;
 	float maxRotation = 1.0f;
 
 	xAxis = game->getSceneWidth();
@@ -100,7 +101,7 @@ void Scene1::Update(const float deltaTime) {
 
 	hunter->Update(deltaTime);
 
-	KinematicSteeringOutput* steering = new KinematicSteeringOutput();
+	//KinematicSteeringOutput* steering = new KinematicSteeringOutput();
 
 	//create kinematic seek
 	hunter2->Update(deltaTime);

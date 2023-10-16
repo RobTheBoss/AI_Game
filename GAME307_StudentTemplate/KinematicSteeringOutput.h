@@ -9,10 +9,11 @@ class KinematicSteeringOutput
 private:
 public:
 	Vec3 velocity;
+	Vec3 acceleration;
 	float rotation;
 
 	KinematicSteeringOutput();
-	KinematicSteeringOutput(Vec3 velocity_, float rotation_);
+	KinematicSteeringOutput(Vec3 velocity_, Vec3 acceleration_, float rotation_);
 };
 
 #endif

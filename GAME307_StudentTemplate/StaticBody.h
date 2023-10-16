@@ -11,6 +11,7 @@ class StaticBody :
 {
 private:
     Scene* scene;
+   
 
 public:
     StaticBody() : Body()

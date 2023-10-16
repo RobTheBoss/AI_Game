@@ -3,15 +3,23 @@
 
 #include "Body.h"
 #include "SteeringOutput.h"
+#include "KinematicSteeringOutput.h"
+#include "KinematicSeek.h"
+#include "Scene.h"
 
 class KinematicBody :
 		public Body
 {
-protected:
+
+private:
+	
+	
 
 public:
 	KinematicBody() : Body{}
-	{}
+	{
+		
+	}
 
 	KinematicBody(
 		Vec3 pos_, Vec3 vel_, Vec3 accel_,
@@ -34,8 +42,11 @@ public:
 		, maxRotation_
 		, maxAngular_ 
 	}
-    {}
+	{
+		
+	}
 
+	
 	void Update( float deltaTime, SteeringOutput *steering );
 };
 

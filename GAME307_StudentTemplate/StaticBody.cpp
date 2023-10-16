@@ -13,24 +13,39 @@ void StaticBody::Update(float deltaTime_)
 	Body::Update(deltaTime_);
 	NewOrientation(); //orients npc towards player
 
-	KinematicSteeringOutput* steering;
-
+	//velocity
+	KinematicSteeringOutput* steering; 
 	KinematicSeek* steeringAlgo;
 	Body* target;
 	target = scene->game->getPlayer();
 	steeringAlgo = new KinematicSeek(this, target);
 	steering = steeringAlgo->GetSteering();
-
 	vel = steering->velocity;
 	rotation = steering->rotation;
 
-	//clip to max
+	//acceleration
+	KinematicSteeringOutput* accelSteering;
+	KinematicSeek* accelAlgo;
+	Body* accelTarget;
+	accelTarget = scene->game->getPlayer();
+	accelAlgo = new KinematicSeek(this, accelTarget);
+	accelSteering = accelAlgo->GetSteering();
+
+	accel = accelSteering->acceleration;
+	rotation = accelSteering->rotation;
+
+
+	//clip velocity to max
 	if (VMath::mag(vel) > maxSpeed)
 	{
 		vel = VMath::normalize(vel) * maxSpeed;
-	}
+	} rotation = rotation > maxRotation ? maxRotation : rotation;
 
-	rotation = rotation > maxRotation ? maxRotation : rotation;
+	//Clip acceleration to max
+	if (VMath::mag(accel) > maxAcceleration)
+	{
+		accel = VMath::normalize(accel) * maxAcceleration;
+	} angular = angular > maxAngular ? maxAngular : angular;
 }
 
 void StaticBody::Render(float scale)

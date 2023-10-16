@@ -1,6 +1,8 @@
 #include "KinematicBody.h"
 
-void KinematicBody::Update( float deltaTime, SteeringOutput *steering )
+
+
+void KinematicBody::Update( float deltaTime,SteeringOutput *steering )
 {
     // Update position, call Update from parent class
     // Note that would update velocity too, but the acceleration in the member object is 0.0!
@@ -16,12 +18,5 @@ void KinematicBody::Update( float deltaTime, SteeringOutput *steering )
         angular = steering->angular;
     }
 
-    //Clip acceleration to max
-    if (VMath::mag(accel) > maxAcceleration)
-    {
-        accel = VMath::normalize(accel) * maxAcceleration;
-    }
-
-    //clip angular accel too
-    angular = angular > maxAngular ? maxAngular : angular;
+    
 }
