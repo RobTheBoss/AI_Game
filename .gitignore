@@ -398,3 +398,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+.vs/GAME307_StudentTemplate/v17/.suo
+.vs/GAME307_StudentTemplate/v17/Browse.VC.db
+Debug/GAME307_StudentTemplate.exe
+Debug/GAME307_StudentTemplate.pdb
+.vs/GAME307_StudentTemplate/v17/.suo
+.vs/GAME307_StudentTemplate/v17/Browse.VC.db

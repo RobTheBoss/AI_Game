@@ -7,6 +7,9 @@
 #include "Character.h"
 #include "StaticBody.h"
 #include "StaticImage.h"
+#include "Node.h"
+#include "Graph.h"
+#include "Tile.h"
 
 
 using namespace MATH;
@@ -23,6 +26,15 @@ private:
 	std::unique_ptr<StaticBody> hunter2;
 	std::unique_ptr<StaticImage> background;
 	std::unique_ptr<StaticImage> darkness;
+
+	Graph* graph;
+	std::vector<Node*> sceneNodes;
+
+	float tileWidth;
+	float tileHeight;
+
+	std::vector<std::vector<Tile*>> tiles;
+	void createTiles(int rows, int cols);
 
 public:
 	Scene1(SDL_Window* sdlWindow, GameManager* game_);
