@@ -64,6 +64,27 @@
     <ClCompile Include="Tile.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="FollowAPath.cpp">
+      <Filter>Source\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="Path.cpp">
+      <Filter>Source\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="Arrive.cpp">
+      <Filter>Source\AI_Movement</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Source\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="Action.cpp">
+      <Filter>Source\Decision Making</Filter>
+    </ClCompile>
+    <ClCompile Include="Decision.cpp">
+      <Filter>Source\Decision Making</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerInRange.cpp">
+      <Filter>Source\Decision Making</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -129,6 +150,30 @@
     <ClInclude Include="Tile.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="FollowAPath.h">
+      <Filter>Headers\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="Path.h">
+      <Filter>Headers\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="Arrive.h">
+      <Filter>Headers\AI_Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Headers\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="DecisionTreeNode.h">
+      <Filter>Headers\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="Action.h">
+      <Filter>Headers\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="Decision.h">
+      <Filter>Headers\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerInRange.h">
+      <Filter>Headers\Decision Making</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
@@ -154,6 +199,18 @@
     </Filter>
     <Filter Include="Headers\Scenes">
       <UniqueIdentifier>{55693013-fb55-409a-b83d-520649c7e841}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Pathfinding">
+      <UniqueIdentifier>{92eba85f-0afe-4291-8119-2ef6dede4151}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Pathfinding">
+      <UniqueIdentifier>{4c59a3ac-9a6a-49b8-a01a-34f84fa30afc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\Decision Making">
+      <UniqueIdentifier>{a1d78da6-9c8b-44cd-907d-debe09ac13a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Decision Making">
+      <UniqueIdentifier>{1605cd57-b6ba-4ac6-85d6-aad884105a80}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -12,12 +12,12 @@ Tile::Tile(Node* node_, Vec3 pos_, float width_, float height_, Scene* scene_)
 	b = 255;
 	a = 255;
 	scene = scene_;
+	collidable = false;
 }
 
 void Tile::Render()
 {
 	SDL_Renderer* renderer = scene->game->getRenderer();
-	SDL_Rect rect;
 
 	Vec3 topLeft;
 	Vec3 bottomRight;
@@ -32,16 +32,31 @@ void Tile::Render()
 	topLeftScreen = scene->getProjectionMatrix() * topLeft;
 	bottomRightScreen = scene->getProjectionMatrix() * bottomRight;
 
-	rect.x = static_cast<int>(topLeftScreen.x);
-	rect.y = static_cast<int>(topLeftScreen.y);
+	Vec3 screenCoords = scene->getProjectionMatrix() * getPos();
+	Vec3 squareSize;
+	squareSize.x = width;
+	squareSize.y = height;
+	squareSize = scene->getProjectionMatrix() * squareSize;
+
+	rect.x = static_cast<int>(screenCoords.x);
+	rect.y = static_cast<int>(screenCoords.y);
 	rect.w = static_cast<int>(bottomRightScreen.x - topLeftScreen.x);
 	rect.h = static_cast<int>(bottomRightScreen.y - topLeftScreen.y);
 
 
 	// draw the tile (you could use images and textures)
-	setRGBA(25, 25, 25, 255);
-	SDL_SetRenderDrawColor(renderer, r, g, b, a);
-	SDL_RenderFillRect(renderer, &rect);
+	if (!collidable)
+	{
+		setRGBA(40, 40, 40, 255);
+		SDL_SetRenderDrawColor(renderer, r, g, b, a);
+		SDL_RenderFillRect(renderer, &rect);
+	}
+	else if (collidable)
+	{
+		setRGBA(0, 0, 0, 255);
+		SDL_SetRenderDrawColor(renderer, r, g, b, a);
+		SDL_RenderFillRect(renderer, &rect);
+	}
 
 	// draw a border around the tile
 	setRGBA(200, 200, 200, 255);

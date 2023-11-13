@@ -86,16 +86,20 @@ void PlayerBody::HandleEvents( const SDL_Event& event )
             // Note: look at Update() to see that velocity is clipped, since
             // continuous acceleration means continually increasing velocity.
             case SDL_SCANCODE_DOWN:
-                accel.y = maxAcceleration * -1.0f;
+                //accel.y = maxAcceleration * -1.0f;
+                vel.y = maxSpeed * -1.0f;
                 break;
             case SDL_SCANCODE_UP:
-                accel.y = maxAcceleration * 1.0f;
+                //accel.y = maxAcceleration * 1.0f;
+                vel.y = maxSpeed * 1.0f;
                 break;
             case SDL_SCANCODE_LEFT:
-                accel.x = maxAcceleration * -1.0f;
+                //accel.x = maxAcceleration * -1.0f;
+                vel.x = maxSpeed * -1.0f;
                 break;
             case SDL_SCANCODE_RIGHT:
-                accel.x = maxAcceleration * 1.0f;
+                //accel.x = maxAcceleration * 1.0f;
+                vel.x = maxSpeed * 1.0f;
                 break;
             default:
                 break;
@@ -133,16 +137,20 @@ void PlayerBody::HandleEvents( const SDL_Event& event )
             // This section is for seeing how to use acceleration rather than velocity
             // for player movement.
             case SDL_SCANCODE_DOWN:
-                accel.y = 0.0;
+                //accel.y = 0.0;
+                vel.y = 0.0f;
                 break;
             case SDL_SCANCODE_UP:
-                accel.y = 0.0;
+                //accel.y = 0.0;
+                vel.y = 0.0f;
                 break;
             case SDL_SCANCODE_LEFT:
-                accel.x = 0.0;
+                //accel.x = 0.0;
+                vel.x = 0.0f;
                 break;
             case SDL_SCANCODE_RIGHT:
-                accel.x = 0.0;
+                //accel.x = 0.0;
+                vel.x = 0.0f;
                 break;
             default:
                 break;

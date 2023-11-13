@@ -1,6 +1,8 @@
 #include "Character.h"
 #include "Seek.h"
 #include "Flee.h"
+#include "Arrive.h"
+#include "Action.h"
 
 
 bool Character::OnCreate(Scene* scene_)
@@ -30,6 +32,8 @@ bool Character::OnCreate(Scene* scene_)
 			maxAngular
 		);
 	}
+
+	//decisionTree = new Action(ACTION_SET::Arrive);
 
 	if (!body)
 	{
@@ -65,8 +69,24 @@ void Character::Update(float deltaTime)
 	// create a new overall steering output
 	SteeringOutput* steering = new SteeringOutput();
 
-	SteerToSeekPlayer(steering);
+	Action* action = static_cast<Action*>(decisionTree->makeDecision());
 
+	switch (action->getLabel())
+	{
+	case ACTION_SET::Seek:
+		SteerToSeekPlayer(steering);
+		break;
+	case ACTION_SET::Arrive:
+		SteerToArrivePlayer(steering);
+		break;
+	case ACTION_SET::Flee:
+		SteerToFleePlayer(steering);
+		break;
+	case ACTION_SET::Do_Nothing:
+		break;
+	}
+
+	
 	// apply the steering to the equations of motion
 	body->Update(deltaTime, steering);
 
@@ -169,4 +189,56 @@ void Character::SteerToFleePlayer(SteeringOutput* steering_)
 
 	if (steering_algo)
 		delete steering_algo;
+}
+
+void Character::SteerToArrivePlayer(SteeringOutput* steering_)
+{
+	std::vector<SteeringOutput*> steeringOutputs;
+
+	// set the target for steering; target is used by the steerTo... functions
+	// (often the target is the Player)
+
+	PlayerBody* target = scene->game->getPlayer();
+
+	// using the target, calculate and set values in the overall steering output
+	SteeringBehaviour* steering_algo = new Arrive(body, target);
+	//*steering_ = *(steering_algo->GetSteering());
+	steeringOutputs.push_back(steering_algo->GetSteering());
+
+	//add another behaviour...
+	//create the algo instance
+	//push GetSteering() into our list
+
+	//add together steering outputs
+	for (int i = 0; i < steeringOutputs.size(); i++)
+	{
+		if (steeringOutputs[i])
+		{
+			*steering_ += *steeringOutputs[i];
+		}
+	}
+
+	if (steering_algo)
+		delete steering_algo;
+}
+
+bool Character::readDecisionTreeFromFile(string file)
+{
+	if (file == "blinky")
+	{
+		//if player is within 2 units of blinky, blinky will seek player
+		// otherwise, do nothing
+
+		Action* trueNode = new Action(ACTION_SET::Seek);
+		Action* falseNode = new Action(ACTION_SET::Do_Nothing);
+		decisionTree = new PlayerInRange(trueNode, falseNode, this);
+
+		return true;
+	}
+	return false;
+}
+
+void Character::setAction(Action* action_)
+{
+	decisionTree = action_;
 }

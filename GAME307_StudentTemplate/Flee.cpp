@@ -12,7 +12,7 @@ Flee::~Flee()
 
 SteeringOutput* Flee::GetSteering()
 {
-	//Get direction to target
+	//Get direction away from target
 	result->linear = npc->getPos() - target->getPos();
 
 	//accelerate in this direction

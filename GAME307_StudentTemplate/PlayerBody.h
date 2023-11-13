@@ -63,7 +63,7 @@ public:
     void Update( float deltaTime );
     void resetToOrigin();
     void setTexture( SDL_Texture* texture_ ) { texture = texture_; }
-    SDL_Rect getSDL_Rect() { return square; }
+    SDL_Rect* getSDL_Rect() { return &square; }
     
 };
 

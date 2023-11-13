@@ -15,6 +15,7 @@ class Tile
 
 	Node* node;
 	Vec3 pos;
+	SDL_Rect rect;
 
 	void setRGBA(Uint8 r_, Uint8 g_, Uint8 b_, Uint8 a_)
 	{
@@ -25,11 +26,14 @@ class Tile
 	}
 
 public:
+	bool collidable;
 	Tile(Node* node_, Vec3 pos_, float width_, float height_, Scene* scene_);
 	~Tile() {}
 
 	void Render();
 	Node* getNode() { return node; }
+	Vec3 getPos() { return pos; }
+	SDL_Rect* getRect() { return &rect; }
 };
 
 #endif

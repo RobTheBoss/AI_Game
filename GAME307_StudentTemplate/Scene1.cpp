@@ -2,53 +2,6 @@
 #include "KinematicSeek.h"
 #include "SDL_rect.h"
 
-
-void Scene1::createTiles(int rows, int cols)
-{
-	tiles.resize(rows);
-	for (int i = 0; i < rows; i++)
-	{
-		tiles[i].resize(cols);
-	}
-
-	Node* n;
-	Tile* t;
-	int i, j, label;
-	i = j = label = 0;
-
-	//for (float y = 0.0f; y < yAxis; y += tileHeight)
-	//{
-	//	// do stuff for a row, y stays constant
-	//	for (float x = 0.0f; x < xAxis; x += tileWidth)
-	//	{
-	//		//create tiles and nodes
-	//		n = new Node(label);
-	//		Vec3 tilePos = Vec3(x, y, 0.0f);
-	//		t = new Tile(n, tilePos, tileWidth, tileHeight, this);
-	//		tiles[i][j] = t;
-	//		j++;
-	//		label++;
-	//	}
-	//	j = 0;
-	//	i++;
-	//}
-
-	for (int i = 0; i < rows; i++)
-	{
-		// do stuff for a row, y stays constant
-		for (int j = 0; j < cols; j++)
-		{
-			//create tiles and nodes
-			n = new Node(label);
-			Vec3 tilePos = Vec3(i * tileWidth, j * tileHeight, 0.0f);
-			t = new Tile(n, tilePos, tileWidth, tileHeight, this);
-			tiles[i][j] = t;
-			label++;
-		}
-		j = 0;
-	}
-}
-
 Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_){
 	window = sdlWindow_;
     game = game_;
@@ -66,8 +19,8 @@ Scene1::~Scene1(){
 }
 
 bool Scene1::OnCreate() {
-	tileWidth = 3.0f;
-	tileHeight = 3.0f;
+	//tileWidth = 3.0f;
+	//tileHeight = 3.0f;
 
 	int w, h;
 	SDL_GetWindowSize(window,&w,&h);
@@ -75,11 +28,6 @@ bool Scene1::OnCreate() {
 	Matrix4 ndc = MMath::viewportNDC(w, h);
 	Matrix4 ortho = MMath::orthographic(0.0f, xAxis, 0.0f, yAxis, 0.0f, 1.0f);
 	projectionMatrix = ndc * ortho;
-
-	//calculate amount of rows and columns we will have
-	int rows = ceil((yAxis - 0.5f * tileHeight) / tileHeight);
-	int cols = ceil((xAxis - 0.5f * tileWidth) / tileWidth);
-	createTiles(50,70);
 	
 	/// Turn on the SDL imaging subsystem
 	IMG_Init(IMG_INIT_PNG);
@@ -92,9 +40,6 @@ bool Scene1::OnCreate() {
 	texture = SDL_CreateTextureFromSurface(renderer, image);
 	game->getPlayer()->setImage(image);
 	game->getPlayer()->setTexture(texture);
-
-	/*delete image;
-	delete texture;*/
 
 	// Set up characters, choose good values for the constructor
 	// or use the defaults, like this
@@ -110,17 +55,14 @@ bool Scene1::OnCreate() {
 		return false;
 	}
 
-	background = std::make_unique<StaticImage>(Vec3(12.0f,7.5f,0));
-	if (!background->OnCreate(this) || !background->setTextureWith("Sprites/Background.png"))
-	{
-		return false;
-	}
-
 	darkness = std::make_unique<StaticImage>(Vec3(12.0f, 7.5f, 0));
 	if (!darkness->OnCreate(this) || !darkness->setTextureWith("Sprites/Darkness.png"))
 	{
 		return false;
 	}
+
+	if (!hunter->readDecisionTreeFromFile("blinky"))
+		return false;
 
 	Vec3 position = Vec3(5.0f, 1.0f, 0.0f);
 	float orientation = 0.0f;
@@ -131,14 +73,21 @@ bool Scene1::OnCreate() {
 	xAxis = game->getSceneWidth();
 	yAxis = game->getSceneHeight();
 
+	grid = std::make_unique<Grid>(3.0f, 3.0f, 50, 70, this);
+
+	grid->createTiles(50, 70);
+	grid->createGraph();
+	grid->calculateConnectionWeights();
+
+	//std::vector<int> path = graph->Dijkstra(0, 4);
+
 	return true;
 }
 
 void Scene1::OnDestroy() {}
 
 void Scene1::Update(const float deltaTime) {
-	//camera follows player (broken for now)
-	SDL_Rect rect = game->getPlayer()->getSDL_Rect();
+	//SDL_Rect rect = game->getPlayer()->getSDL_Rect();
 
 	float left, right, top, bottom;
 	left = (game->getPlayer()->getPos().x) - (xAxis / 2.0f);
@@ -158,7 +107,7 @@ void Scene1::Update(const float deltaTime) {
 	//KinematicSteeringOutput* steering = new KinematicSteeringOutput();
 
 	//create kinematic seek
-	hunter2->Update(deltaTime);
+	//hunter2->Update(deltaTime);
 
 	// Update player
 	game->getPlayer()->Update(deltaTime);
@@ -170,27 +119,20 @@ void Scene1::Render() {
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 	SDL_RenderClear(renderer);
 
-	//render background
-	background->render(1.5f);
-
 	//Render tiles
-	for (int i = 0; i < tiles.size(); i++)
-	{
-		for (int j = 0; j < tiles[i].size(); j++)
-		{
-			tiles[i][j]->Render();
-		}
-	}
+	grid->Render();
 
 	// render the player
-	game->RenderPlayer(0.7f);
+	game->RenderPlayer(0.5f);
 
 	//render npc
 	hunter->render(0.2f);
 	hunter2->Render(0.2f);
 
 	//render darkness
-	darkness->render();
+	darkness->render(.8f);
+
+	grid->playerTileCollision();
 
 	SDL_RenderPresent(renderer);
 }
