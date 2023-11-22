@@ -9,6 +9,7 @@ class FollowAPath : Arrive {
 
 public:
 	FollowAPath(Body* npc_, Body* target_);
+	FollowAPath(Body* npc_, Vec3 target_);
 	~FollowAPath();
 
 	SteeringOutput* GetSteering();

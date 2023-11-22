@@ -69,7 +69,8 @@ void Character::Update(float deltaTime)
 	// create a new overall steering output
 	SteeringOutput* steering = new SteeringOutput();
 
-	Action* action = static_cast<Action*>(decisionTree->makeDecision());
+	//Action* action = static_cast<Action*>(decisionTree->makeDecision());
+	Action* action = new Action(ACTION_SET::Arrive);
 
 	switch (action->getLabel())
 	{
@@ -224,12 +225,12 @@ void Character::SteerToArrivePlayer(SteeringOutput* steering_)
 
 bool Character::readDecisionTreeFromFile(string file)
 {
-	if (file == "blinky")
+	if (file == "hunter")
 	{
 		//if player is within 2 units of blinky, blinky will seek player
 		// otherwise, do nothing
 
-		Action* trueNode = new Action(ACTION_SET::Seek);
+		Action* trueNode = new Action(ACTION_SET::Arrive);
 		Action* falseNode = new Action(ACTION_SET::Do_Nothing);
 		decisionTree = new PlayerInRange(trueNode, falseNode, this);
 

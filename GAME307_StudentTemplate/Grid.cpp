@@ -48,12 +48,12 @@ void Grid::createTiles(int rows, int cols)
 	}
 
 	//temp
-	tiles[5][5]->collidable = true;
+	/*tiles[5][5]->collidable = true;
 	tiles[15][15]->collidable = true;
 	tiles[35][35]->collidable = true;
 	tiles[45][35]->collidable = true;
 	tiles[49][35]->collidable = true;
-	tiles[38][35]->collidable = true;
+	tiles[38][35]->collidable = true;*/
 }
 
 void Grid::calculateConnectionWeights()
@@ -106,7 +106,7 @@ void Grid::createGraph()
 
 void Grid::playerTileCollision()
 {
-	for (int i = 0; i < rows; i++)
+	/*for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < cols; j++)
 		{
@@ -118,7 +118,7 @@ void Grid::playerTileCollision()
 
 			}
 		}
-	}
+	}*/
 }
 
 void Grid::Render()

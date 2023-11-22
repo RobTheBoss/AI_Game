@@ -1,9 +1,16 @@
 #include "Arrive.h"
 
-Arrive::Arrive(Body* npc_, Body* target_) : maxAcceleration(1.0f), maxSpeed(5.0f), targetRadius(0.1f), slowRadius(2.0f), timeToTarget(0.1f)
+Arrive::Arrive(Body* npc_, Body* target_) : maxAcceleration(5.0f), maxSpeed(3.0f), targetRadius(0.5f), slowRadius(2.0f), timeToTarget(0.2f)
 {
 	npc = npc_;
 	target = target_;
+}
+
+Arrive::Arrive(Body* npc_, Vec3 target_) : maxAcceleration(5.0f), maxSpeed(3.0f), targetRadius(0.5f), slowRadius(2.0f), timeToTarget(0.2f)
+{
+	npc = npc_;
+	target = nullptr;
+	target2 = target_;
 }
 
 Arrive::~Arrive()
@@ -15,9 +22,20 @@ SteeringOutput* Arrive::GetSteering()
 	result = new SteeringOutput();
 	float targetSpeed;
 
+	Vec3 direction;
+	float distance;
+
 	//get direction to target
-	Vec3 direction = target->getPos() - npc->getPos();
-	float distance = VMath::mag(direction);
+	if (target != nullptr) //target is player position
+	{
+		direction = target->getPos() - npc->getPos();
+		distance = VMath::mag(direction);
+	}
+	else //target2 is vec3 position that can be any coordinate
+	{
+		direction = target2 - npc->getPos();
+		distance = VMath::mag(direction);
+	}
 	direction = VMath::normalize(direction);
 
 	//check if we are there. Return no steering

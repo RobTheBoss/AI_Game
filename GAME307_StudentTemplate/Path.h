@@ -6,14 +6,18 @@
 #include <vector>
 
 class Path {
+private:
 	Tile* currentTile;
-	std::vector<std::vector<Tile*>> tiles;
+	int currentIndex;
+	std::vector<Node*> pathNodes;
 
 public:
-	void IncrementTile(int amount_);
+	Path(std::vector<Node*> pathNodes_) { pathNodes = pathNodes_; }
+
+	void IncrementNode();
 	Vec3 getCurrentTilePosition();
 
-	Path(); //need to get a reference to std::vector<std::vector<Tile*>> from scene1.h
+	Path();
 	~Path();
 };
 

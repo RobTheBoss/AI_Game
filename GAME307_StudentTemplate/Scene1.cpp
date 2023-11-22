@@ -61,7 +61,7 @@ bool Scene1::OnCreate() {
 		return false;
 	}
 
-	if (!hunter->readDecisionTreeFromFile("blinky"))
+	if (!hunter->readDecisionTreeFromFile("hunter"))
 		return false;
 
 	Vec3 position = Vec3(5.0f, 1.0f, 0.0f);
@@ -75,9 +75,12 @@ bool Scene1::OnCreate() {
 
 	grid = std::make_unique<Grid>(3.0f, 3.0f, 50, 70, this);
 
-	grid->createTiles(50, 70);
+	grid->createTiles(6, 6);
 	grid->createGraph();
 	grid->calculateConnectionWeights();
+
+	grid->findPath(5, 25); //temporary (in game findPath will be used in the FollowAPath Class)
+	
 
 	//std::vector<int> path = graph->Dijkstra(0, 4);
 
@@ -92,22 +95,17 @@ void Scene1::Update(const float deltaTime) {
 	float left, right, top, bottom;
 	left = (game->getPlayer()->getPos().x) - (xAxis / 2.0f);
 	right = (game->getPlayer()->getPos().x) + (xAxis / 2.0f);
-	bottom = (game->getPlayer()->getPos().y) + (yAxis / 2.0f);
-	top = (game->getPlayer()->getPos().y) - (yAxis / 2.0f);
+	bottom = (game->getPlayer()->getPos().y) - (yAxis / 2.0f);
+	top = (game->getPlayer()->getPos().y) + (yAxis / 2.0f);
 
 	int w, h;
 	SDL_GetWindowSize(window, &w, &h);
 
 	Matrix4 ndc = MMath::viewportNDC(w, h);
-	Matrix4 ortho = MMath::orthographic(left, right, top, bottom, 0.0f, 1.0f);
+	Matrix4 ortho = MMath::orthographic(left, right, bottom, top, 0.0f, 1.0f);
 	projectionMatrix = ndc * ortho;
 
 	hunter->Update(deltaTime);
-
-	//KinematicSteeringOutput* steering = new KinematicSteeringOutput();
-
-	//create kinematic seek
-	//hunter2->Update(deltaTime);
 
 	// Update player
 	game->getPlayer()->Update(deltaTime);
@@ -130,7 +128,7 @@ void Scene1::Render() {
 	hunter2->Render(0.2f);
 
 	//render darkness
-	darkness->render(.8f);
+	darkness->render(1.0f);
 
 	grid->playerTileCollision();
 

@@ -8,7 +8,7 @@ Path::~Path()
 {
 }
 
-void Path::IncrementTile(int amount_)
+void Path::IncrementNode()
 {
 }
 

@@ -8,6 +8,7 @@
 #include "Scene.h"
 
 class Grid {
+private:
 	float tileWidth, tileHeight;
 	int rows, cols;
 	std::vector<Node*> sceneNodes;
@@ -24,6 +25,11 @@ public:
 	void createGraph();
 	void playerTileCollision();
 	void Render();
+	std::vector<int> findPath(int startNode_, int endNode_)
+	{
+		std::vector<int> temp = graph->Dijkstra(startNode_, endNode_);
+		return graph->Dijkstra(startNode_, endNode_);
+	}
 };
 
 #endif // !GRID_H

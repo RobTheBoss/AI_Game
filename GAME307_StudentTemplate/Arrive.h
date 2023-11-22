@@ -6,6 +6,7 @@
 class Arrive : public SteeringBehaviour {
 protected:
 	Body* target;
+	Vec3 target2;
 
 	float maxAcceleration;
 	float maxSpeed;
@@ -15,6 +16,7 @@ protected:
 
 public:
 	Arrive(Body* npc_, Body* target_);
+	Arrive(Body* npc_, Vec3 target_);
 	~Arrive();
 
 	SteeringOutput* GetSteering();

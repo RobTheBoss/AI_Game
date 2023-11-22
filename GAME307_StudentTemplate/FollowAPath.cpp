@@ -2,6 +2,12 @@
 
 FollowAPath::FollowAPath(Body* npc_, Body* target_) : Arrive{npc_, target_}
 {
+	path = nullptr;
+}
+
+FollowAPath::FollowAPath(Body* npc_, Vec3 target_) : Arrive{ npc_, target_ }
+{
+	path = nullptr;
 }
 
 FollowAPath::~FollowAPath()
@@ -24,7 +30,7 @@ SteeringOutput* FollowAPath::GetSteering()
 
 	//	// incremented for next steering request
 
-	//	path->incrementCurrentNode(1);
+	//	path->incrementNode();
 
 	//}
 
