@@ -16,6 +16,7 @@ public:
 
 	void IncrementNode();
 	Vec3 getCurrentTilePosition();
+	
 
 	Path();
 	~Path();

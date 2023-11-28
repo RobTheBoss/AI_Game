@@ -107,6 +107,7 @@ void Scene1::Update(const float deltaTime) {
 
 	hunter->Update(deltaTime);
 
+
 	// Update player
 	game->getPlayer()->Update(deltaTime);
 
@@ -138,7 +139,7 @@ void Scene1::Render() {
 void Scene1::HandleEvents(const SDL_Event& event)
 {
 	// send events to npc's as needed
-
+	
 	// send events to player as needed
 	game->getPlayer()->HandleEvents(event);
 }

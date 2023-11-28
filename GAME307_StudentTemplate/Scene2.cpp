@@ -85,6 +85,10 @@ bool Scene2::OnCreate()
 void Scene2::OnDestroy()
 {
 	//todo memory management
+
+	//debug message
+
+	std::cout << "Scene 2 destroyed" << std::endl;
 }
 
 void Scene2::Update(const float time)
