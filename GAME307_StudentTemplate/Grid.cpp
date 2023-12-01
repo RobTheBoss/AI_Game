@@ -185,6 +185,11 @@ void Grid::Render()
 
 void Grid::SetWalls()
 {
+	tiles[0][0]->isWall = true;
+	tiles[1][0]->isWall = true;
+	tiles[2][0]->isWall = true;
+	tiles[3][0]->isWall = true;
+	tiles[4][0]->isWall = true;
 	tiles[5][0]->isWall = true;
 	tiles[6][0]->isWall = true;
 	tiles[7][0]->isWall = true;
@@ -197,38 +202,46 @@ void Grid::SetWalls()
 	tiles[14][0]->isWall = true;
 	tiles[15][0]->isWall = true;
 	tiles[16][0]->isWall = true;
+	tiles[17][0]->isWall = true;
 
+	tiles[0][1]->isWall = true;
+	tiles[5][1]->isWall = true;
+	tiles[6][1]->isWall = true;
+	tiles[7][1]->isWall = true;
+	tiles[8][1]->isWall = true;
+	tiles[9][1]->isWall = true;
+	tiles[10][1]->isWall = true;
+	tiles[11][1]->isWall = true;
+	tiles[12][1]->isWall = true;
+	tiles[13][1]->isWall = true;
+	tiles[14][1]->isWall = true;
+	tiles[15][1]->isWall = true;
 	tiles[16][1]->isWall = true;
+	tiles[17][1]->isWall = true;
 
-	tiles[5][2]->isWall = true;
-	tiles[6][2]->isWall = true;
-	tiles[7][2]->isWall = true;
-	tiles[8][2]->isWall = true;
-	tiles[9][2]->isWall = true;
+	tiles[0][2]->isWall = true;
 	tiles[16][2]->isWall = true;
+	tiles[17][2]->isWall = true;
 
+	tiles[0][3]->isWall = true;
 	tiles[5][3]->isWall = true;
 	tiles[6][3]->isWall = true;
 	tiles[7][3]->isWall = true;
 	tiles[8][3]->isWall = true;
 	tiles[9][3]->isWall = true;
 	tiles[16][3]->isWall = true;
+	tiles[17][3]->isWall = true;
 
+	tiles[0][4]->isWall = true;
 	tiles[5][4]->isWall = true;
 	tiles[6][4]->isWall = true;
 	tiles[7][4]->isWall = true;
 	tiles[8][4]->isWall = true;
 	tiles[9][4]->isWall = true;
-	tiles[10][4]->isWall = true;
-	tiles[13][4]->isWall = true;
-	tiles[14][4]->isWall = true;
-	tiles[15][4]->isWall = true;
 	tiles[16][4]->isWall = true;
+	tiles[17][4]->isWall = true;
 
 	tiles[0][5]->isWall = true;
-	tiles[1][5]->isWall = true;
-	tiles[3][5]->isWall = true;
-	tiles[4][5]->isWall = true;
 	tiles[5][5]->isWall = true;
 	tiles[6][5]->isWall = true;
 	tiles[7][5]->isWall = true;
@@ -239,31 +252,40 @@ void Grid::SetWalls()
 	tiles[14][5]->isWall = true;
 	tiles[15][5]->isWall = true;
 	tiles[16][5]->isWall = true;
+	tiles[17][5]->isWall = true;
 
 	tiles[0][6]->isWall = true;
 	tiles[1][6]->isWall = true;
 	tiles[3][6]->isWall = true;
 	tiles[4][6]->isWall = true;
 	tiles[5][6]->isWall = true;
+	tiles[6][6]->isWall = true;
+	tiles[7][6]->isWall = true;
+	tiles[8][6]->isWall = true;
+	tiles[9][6]->isWall = true;
+	tiles[10][6]->isWall = true;
 	tiles[13][6]->isWall = true;
 	tiles[14][6]->isWall = true;
 	tiles[15][6]->isWall = true;
 	tiles[16][6]->isWall = true;
+	tiles[17][6]->isWall = true;
 
 	tiles[0][7]->isWall = true;
 	tiles[1][7]->isWall = true;
 	tiles[3][7]->isWall = true;
 	tiles[4][7]->isWall = true;
 	tiles[5][7]->isWall = true;
-	tiles[10][7]->isWall = true;
-	tiles[11][7]->isWall = true;
-	tiles[12][7]->isWall = true;
 	tiles[13][7]->isWall = true;
 	tiles[14][7]->isWall = true;
 	tiles[15][7]->isWall = true;
 	tiles[16][7]->isWall = true;
+	tiles[17][7]->isWall = true;
 
 	tiles[0][8]->isWall = true;
+	tiles[1][8]->isWall = true;
+	tiles[3][8]->isWall = true;
+	tiles[4][8]->isWall = true;
+	tiles[5][8]->isWall = true;
 	tiles[10][8]->isWall = true;
 	tiles[11][8]->isWall = true;
 	tiles[12][8]->isWall = true;
@@ -271,11 +293,9 @@ void Grid::SetWalls()
 	tiles[14][8]->isWall = true;
 	tiles[15][8]->isWall = true;
 	tiles[16][8]->isWall = true;
+	tiles[17][8]->isWall = true;
 
 	tiles[0][9]->isWall = true;
-	tiles[3][9]->isWall = true;
-	tiles[4][9]->isWall = true;
-	tiles[5][9]->isWall = true;
 	tiles[10][9]->isWall = true;
 	tiles[11][9]->isWall = true;
 	tiles[12][9]->isWall = true;
@@ -283,23 +303,29 @@ void Grid::SetWalls()
 	tiles[14][9]->isWall = true;
 	tiles[15][9]->isWall = true;
 	tiles[16][9]->isWall = true;
+	tiles[17][9]->isWall = true;
 
 	tiles[0][10]->isWall = true;
-	tiles[1][10]->isWall = true;
 	tiles[3][10]->isWall = true;
 	tiles[4][10]->isWall = true;
 	tiles[5][10]->isWall = true;
 	tiles[10][10]->isWall = true;
 	tiles[11][10]->isWall = true;
+	tiles[12][10]->isWall = true;
+	tiles[13][10]->isWall = true;
+	tiles[14][10]->isWall = true;
+	tiles[15][10]->isWall = true;
+	tiles[16][10]->isWall = true;
+	tiles[17][10]->isWall = true;
 
 	tiles[0][11]->isWall = true;
 	tiles[1][11]->isWall = true;
 	tiles[3][11]->isWall = true;
 	tiles[4][11]->isWall = true;
 	tiles[5][11]->isWall = true;
-	tiles[6][11]->isWall = true;
-	tiles[7][11]->isWall = true;
 	tiles[10][11]->isWall = true;
+	tiles[11][11]->isWall = true;
+	tiles[17][11]->isWall = true;
 
 	tiles[0][12]->isWall = true;
 	tiles[1][12]->isWall = true;
@@ -308,24 +334,21 @@ void Grid::SetWalls()
 	tiles[5][12]->isWall = true;
 	tiles[6][12]->isWall = true;
 	tiles[7][12]->isWall = true;
+	tiles[10][12]->isWall = true;
+	tiles[17][12]->isWall = true;
 
 	tiles[0][13]->isWall = true;
 	tiles[1][13]->isWall = true;
+	tiles[3][13]->isWall = true;
+	tiles[4][13]->isWall = true;
+	tiles[5][13]->isWall = true;
+	tiles[6][13]->isWall = true;
+	tiles[7][13]->isWall = true;
+	tiles[17][13]->isWall = true;
 
 	tiles[0][14]->isWall = true;
 	tiles[1][14]->isWall = true;
-	tiles[2][14]->isWall = true;
-	tiles[3][14]->isWall = true;
-	tiles[4][14]->isWall = true;
-	tiles[7][14]->isWall = true;
-	tiles[8][14]->isWall = true;
-	tiles[9][14]->isWall = true;
-	tiles[10][14]->isWall = true;
-	tiles[11][14]->isWall = true;
-	tiles[12][14]->isWall = true;
-	tiles[13][14]->isWall = true;
-	tiles[15][14]->isWall = true;
-	tiles[16][14]->isWall = true;
+	tiles[17][14]->isWall = true;
 
 	tiles[0][15]->isWall = true;
 	tiles[1][15]->isWall = true;
@@ -341,14 +364,23 @@ void Grid::SetWalls()
 	tiles[13][15]->isWall = true;
 	tiles[15][15]->isWall = true;
 	tiles[16][15]->isWall = true;
+	tiles[17][15]->isWall = true;
 
 	tiles[0][16]->isWall = true;
 	tiles[1][16]->isWall = true;
 	tiles[2][16]->isWall = true;
 	tiles[3][16]->isWall = true;
 	tiles[4][16]->isWall = true;
+	tiles[7][16]->isWall = true;
+	tiles[8][16]->isWall = true;
+	tiles[9][16]->isWall = true;
+	tiles[10][16]->isWall = true;
+	tiles[11][16]->isWall = true;
+	tiles[12][16]->isWall = true;
+	tiles[13][16]->isWall = true;
 	tiles[15][16]->isWall = true;
 	tiles[16][16]->isWall = true;
+	tiles[17][16]->isWall = true;
 
 	tiles[0][17]->isWall = true;
 	tiles[1][17]->isWall = true;
@@ -357,19 +389,16 @@ void Grid::SetWalls()
 	tiles[4][17]->isWall = true;
 	tiles[15][17]->isWall = true;
 	tiles[16][17]->isWall = true;
+	tiles[17][17]->isWall = true;
 
 	tiles[0][18]->isWall = true;
 	tiles[1][18]->isWall = true;
 	tiles[2][18]->isWall = true;
 	tiles[3][18]->isWall = true;
 	tiles[4][18]->isWall = true;
-	tiles[5][18]->isWall = true;
-	tiles[6][18]->isWall = true;
-	tiles[12][18]->isWall = true;
-	tiles[13][18]->isWall = true;
-	tiles[14][18]->isWall = true;
 	tiles[15][18]->isWall = true;
 	tiles[16][18]->isWall = true;
+	tiles[17][18]->isWall = true;
 
 	tiles[0][19]->isWall = true;
 	tiles[1][19]->isWall = true;
@@ -383,4 +412,19 @@ void Grid::SetWalls()
 	tiles[14][19]->isWall = true;
 	tiles[15][19]->isWall = true;
 	tiles[16][19]->isWall = true;
+	tiles[17][19]->isWall = true;
+
+	tiles[0][20]->isWall = true;
+	tiles[1][20]->isWall = true;
+	tiles[2][20]->isWall = true;
+	tiles[3][20]->isWall = true;
+	tiles[4][20]->isWall = true;
+	tiles[5][20]->isWall = true;
+	tiles[6][20]->isWall = true;
+	tiles[12][20]->isWall = true;
+	tiles[13][20]->isWall = true;
+	tiles[14][20]->isWall = true;
+	tiles[15][20]->isWall = true;
+	tiles[16][20]->isWall = true;
+	tiles[17][20]->isWall = true;
 }

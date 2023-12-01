@@ -75,7 +75,7 @@ bool Scene1::OnCreate() {
 
 	grid = std::make_unique<Grid>(3.0f, 3.0f, this);
 
-	grid->createTiles(17,20);
+	grid->createTiles(18,21);
 	grid->createGraph();
 	grid->calculateConnectionWeights();
 
