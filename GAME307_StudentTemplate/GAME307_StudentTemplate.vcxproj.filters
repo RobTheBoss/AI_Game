@@ -85,6 +85,9 @@
     <ClCompile Include="PlayerInRange.cpp">
       <Filter>Source\Decision Making</Filter>
     </ClCompile>
+    <ClCompile Include="Evade.cpp">
+      <Filter>Source\AI_Movement</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -173,6 +176,9 @@
     </ClInclude>
     <ClInclude Include="PlayerInRange.h">
       <Filter>Headers\Decision Making</Filter>
+    </ClInclude>
+    <ClInclude Include="Evade.h">
+      <Filter>Headers\AI_Movement</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

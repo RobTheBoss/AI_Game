@@ -15,7 +15,7 @@ Grid::~Grid()
 	if (graph)
 	delete graph;
 
-	delete scene;
+	//delete scene;
 }
 
 void Grid::createTiles(int rows, int cols)
