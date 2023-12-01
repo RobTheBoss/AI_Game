@@ -24,6 +24,7 @@ public:
 	void calculateConnectionWeights();
 	void createGraph();
 	void playerTileCollision();
+	void enemyTileCollision(class Character* enemy_);
 	void Render();
 	std::vector<int> findPath(int startNode_, int endNode_)
 	{

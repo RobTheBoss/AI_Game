@@ -12,7 +12,6 @@ class Body {
 protected:
 	// inherited classes can access this
 	Vec3 pos;
-    Vec3 lastPos;
 	Vec3 vel;
 	Vec3 accel;
 	float mass;
@@ -47,7 +46,6 @@ public:
     virtual void Update(float deltaTime);
     virtual void ApplyForce(Vec3 force_);
     virtual Vec3 getPos() { return pos; }
-    virtual Vec3 getLastPos() { return lastPos; }
     virtual Vec3 getVel() { return vel; }
     virtual void SetVel(Vec3 velocity_) { vel = velocity_; }
     virtual Vec3 getAccel() { return accel; }

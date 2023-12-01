@@ -108,6 +108,7 @@ void Scene1::Update(const float deltaTime) {
 	hunter->Update(deltaTime);
 
 	grid->playerTileCollision();
+	grid->enemyTileCollision(hunter.get());
 
 	// Update player
 	game->getPlayer()->Update(deltaTime);

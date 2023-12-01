@@ -1,4 +1,5 @@
 #include "Grid.h"
+#include "Character.h"
 
 Grid::Grid(float tileWidth_, float tileHeight_, Scene* scene_)
 {
@@ -132,6 +133,40 @@ void Grid::playerTileCollision()
 				else if (playerRect->y + playerRect->h > tileRect->y && player->getVel().y < 0 && playerRect->y + playerRect->h - tileRect->y < 10
 					|| playerRect->y < tileRect->h + tileRect->y && player->getVel().y > 0 && tileRect->h + tileRect->y - playerRect->y < 10)
 					player->setVelY(0.0f);
+			}
+		}
+	}
+}
+
+void Grid::enemyTileCollision(Character* enemy_)
+{
+	SDL_Rect* enemyRect = enemy_->getRect();
+
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			Tile* currentTile = tiles[i][j];
+
+			SDL_Rect* tileRect = currentTile->getRect();
+			if (SDL_HasIntersection(enemyRect, tileRect) && currentTile->isWall)
+			{
+				if (enemyRect->x + enemyRect->w > tileRect->x && enemy_->getVel().x > 0 && enemyRect->x + enemyRect->w - tileRect->x < 10)
+				{
+					enemy_->setVelX(-1 * fabs(enemy_->getVel().x));
+				}
+				else if (enemyRect->x < tileRect->x + tileRect->w && enemy_->getVel().x < 0 && tileRect->x + tileRect->w - enemyRect->x < 10)
+				{
+					enemy_->setVelX(fabs(enemy_->getVel().x));
+				}
+				else if (enemyRect->y + enemyRect->h > tileRect->y && enemy_->getVel().y < 0 && enemyRect->y + enemyRect->h - tileRect->y < 10)
+				{
+					enemy_->setVelY(fabs(enemy_->getVel().y));
+				}
+				else if (enemyRect->y < tileRect->h + tileRect->y && enemy_->getVel().y > 0 && tileRect->h + tileRect->y - enemyRect->y < 10)
+				{
+					enemy_->setVelY(-1 * fabs(enemy_->getVel().y));
+				}
 			}
 		}
 	}

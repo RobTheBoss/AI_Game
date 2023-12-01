@@ -40,6 +40,8 @@ bool Character::OnCreate(Scene* scene_)
 		return false;
 	}
 
+	square = new SDL_Rect();
+
 	return true;
 }
 
@@ -107,7 +109,6 @@ void Character::render(float scale)
 	SDL_Renderer* renderer = scene->game->getRenderer();
 	Matrix4 projectionMatrix = scene->getProjectionMatrix();
 
-	SDL_Rect square;
 	Vec3 screenCoords;
 	int w, h;
 
@@ -116,15 +117,15 @@ void Character::render(float scale)
 	w = static_cast<int>(w * scale);
 	h = static_cast<int>(h * scale);
 	screenCoords = projectionMatrix * body->getPos();
-	square.x = static_cast<int>(screenCoords.x - 0.5f * w);
-	square.y = static_cast<int>(screenCoords.y - 0.5f * h);
-	square.w = w;
-	square.h = h;
+	square->x = static_cast<int>(screenCoords.x - 0.5f * w);
+	square->y = static_cast<int>(screenCoords.y - 0.5f * h);
+	square->w = w;
+	square->h = h;
 
 	// Convert character orientation from radians to degrees.
 	float orientation = body->getOrientation() * 180.0f / M_PI;
 
-	SDL_RenderCopyEx(renderer, body->getTexture(), nullptr, &square,
+	SDL_RenderCopyEx(renderer, body->getTexture(), nullptr, square,
 		orientation, nullptr, SDL_FLIP_NONE);
 
 	/*if (renderer)
