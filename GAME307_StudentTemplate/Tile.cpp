@@ -47,7 +47,7 @@ void Tile::Render()
 	// draw the tile (you could use images and textures)
 	if (!isWall)
 	{
-		setRGBA(40, 40, 40, 255);
+		setRGBA(70, 70, 70, 255);
 		SDL_SetRenderDrawColor(renderer, r, g, b, a);
 		SDL_RenderFillRect(renderer, &rect);
 	}

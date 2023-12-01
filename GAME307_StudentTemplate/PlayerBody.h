@@ -22,6 +22,7 @@ public:
     PlayerBody() : Body{}
     {
         game = nullptr;
+        square = SDL_Rect();
     }
 
     PlayerBody(
@@ -52,7 +53,7 @@ public:
     }
         , game{ game_ }
     {
-        
+        square = SDL_Rect();
     }
     
     // use the base class versions of getters

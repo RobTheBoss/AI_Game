@@ -118,19 +118,15 @@ void PlayerBody::HandleEvents( const SDL_Event& event )
             // releases one of two pressed keys, then speed remains at sqrt(0.5) of maxSpeed
             case SDL_SCANCODE_W:
                 vel.y = 0.0f;
-                if (VMath::mag( vel ) > VERY_SMALL) vel = VMath::normalize( vel ) * maxSpeed;
                 break;
             case SDL_SCANCODE_A:
-                vel.x = -0.0f;
-                if (VMath::mag( vel ) > VERY_SMALL) vel = VMath::normalize( vel ) * maxSpeed;
+                vel.x = 0.0f;
                 break;
             case SDL_SCANCODE_S:
-                vel.y = -0.0f;
-                if (VMath::mag( vel ) > VERY_SMALL) vel = VMath::normalize( vel ) * maxSpeed;
+                vel.y = 0.0f;
                 break;
             case SDL_SCANCODE_D:
                 vel.x = 0.0f;
-                if (VMath::mag( vel ) > VERY_SMALL) vel = VMath::normalize( vel ) * maxSpeed;
                 break;
 
             

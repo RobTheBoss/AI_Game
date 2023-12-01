@@ -6,6 +6,8 @@ Grid::Grid(float tileWidth_, float tileHeight_, Scene* scene_)
 	tileHeight = tileHeight_;
 	scene = scene_;
 	graph = nullptr;
+	rows = 0;
+	cols = 0;
 }
 
 Grid::~Grid()
@@ -64,26 +66,38 @@ void Grid::calculateConnectionWeights()
 			if (j > 0)
 			{
 				//check if "to" tile is blocked
-				int to = tiles[i][j - 1]->getNode()->getLabel();
-				graph->addWeightedConnection(from, to, tileWidth);
+				if (!tiles[i][j - 1]->isWall)
+				{
+					int to = tiles[i][j - 1]->getNode()->getLabel();
+					graph->addWeightedConnection(from, to, tileWidth);
+				}
 			}
 			//right is i,j+1
 			if (j < columns - 1)
 			{
-				int to = tiles[i][j + 1]->getNode()->getLabel();
-				graph->addWeightedConnection(from, to, tileWidth);
+				if (!tiles[i][j + 1]->isWall)
+				{
+					int to = tiles[i][j + 1]->getNode()->getLabel();
+					graph->addWeightedConnection(from, to, tileWidth);
+				}
 			}
 			//up is i+1,j
 			if (i < rows - 1)
 			{
-				int to = tiles[i + 1][j]->getNode()->getLabel();
-				graph->addWeightedConnection(from, to, tileWidth);
+				if (!tiles[i + 1][j]->isWall)
+				{
+					int to = tiles[i + 1][j]->getNode()->getLabel();
+					graph->addWeightedConnection(from, to, tileWidth);
+				}
 			}
 			//down is i-1,j
 			if (i > 0)
 			{
-				int to = tiles[i - 1][j]->getNode()->getLabel();
-				graph->addWeightedConnection(from, to, tileWidth);
+				if (!tiles[i - 1][j]->isWall)
+				{
+					int to = tiles[i - 1][j]->getNode()->getLabel();
+					graph->addWeightedConnection(from, to, tileWidth);
+				}
 			}
 		}
 	}

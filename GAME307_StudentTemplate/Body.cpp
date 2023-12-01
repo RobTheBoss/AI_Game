@@ -64,6 +64,11 @@ void Body::Update( float deltaTime ){
         vel = VMath::normalize(vel) * maxSpeed;
     }
 
+    if (VMath::mag(vel) < maxSpeed && VMath::mag(vel) > 0.1f)
+    {
+        vel = VMath::normalize(vel) * maxSpeed;
+    }
+
     pos += vel * deltaTime + accel * (0.5f * deltaTime * deltaTime);
     
     // Update orientation
