@@ -159,6 +159,11 @@ void PlayerBody::Update( float deltaTime )
     // Update position, call Update from base class
     // Note that would update velocity too, and rotation motion
 
+    if (VMath::mag(vel) < maxSpeed && VMath::mag(vel) > 0.1f)
+    {
+        vel = VMath::normalize(vel) * maxSpeed;
+    }
+
     Body::Update( deltaTime );
 
     // This will ensure player body stops at edges
