@@ -17,10 +17,10 @@ private:
 	Graph* graph;
 
 public:
-	Grid(float tileWidth_, float tileHeight_, int rows_, int columns_, Scene* scene_);
+	Grid(float tileWidth_, float tileHeight_, Scene* scene_);
 	~Grid();
 
-	void createTiles(int rows, int cols);
+	void createTiles(int rows_, int cols_);
 	void calculateConnectionWeights();
 	void createGraph();
 	void playerTileCollision();
@@ -30,6 +30,7 @@ public:
 		std::vector<int> temp = graph->Dijkstra(startNode_, endNode_);
 		return graph->Dijkstra(startNode_, endNode_);
 	}
+	void SetWalls();
 };
 
 #endif // !GRID_H

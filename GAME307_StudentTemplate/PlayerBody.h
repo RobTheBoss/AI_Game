@@ -63,8 +63,9 @@ public:
     void Update( float deltaTime );
     void resetToOrigin();
     void setTexture( SDL_Texture* texture_ ) { texture = texture_; }
-    SDL_Rect* getSDL_Rect() { return &square; }
-    
+    SDL_Rect* getSDL_Rect() { return &square; }  
+    void setVelX(float x) { vel.x = x; }
+    void setVelY(float y) { vel.y = y; }
 };
 
 #endif /* PLAYERBODY_H */

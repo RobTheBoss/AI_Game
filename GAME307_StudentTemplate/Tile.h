@@ -26,7 +26,7 @@ class Tile
 	}
 
 public:
-	bool collidable;
+	bool isWall;
 	Tile(Node* node_, Vec3 pos_, float width_, float height_, Scene* scene_);
 	~Tile() {}
 

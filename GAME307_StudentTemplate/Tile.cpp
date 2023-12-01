@@ -12,7 +12,7 @@ Tile::Tile(Node* node_, Vec3 pos_, float width_, float height_, Scene* scene_)
 	b = 255;
 	a = 255;
 	scene = scene_;
-	collidable = false;
+	isWall = false;
 }
 
 void Tile::Render()
@@ -45,13 +45,13 @@ void Tile::Render()
 
 
 	// draw the tile (you could use images and textures)
-	if (!collidable)
+	if (!isWall)
 	{
 		setRGBA(40, 40, 40, 255);
 		SDL_SetRenderDrawColor(renderer, r, g, b, a);
 		SDL_RenderFillRect(renderer, &rect);
 	}
-	else if (collidable)
+	else if (isWall)
 	{
 		setRGBA(0, 0, 0, 255);
 		SDL_SetRenderDrawColor(renderer, r, g, b, a);

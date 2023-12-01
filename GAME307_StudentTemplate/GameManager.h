@@ -37,8 +37,8 @@ public:
 	Matrix4 getProjectionMatrix();
     PlayerBody* getPlayer(){ return player; }
 	Uint32 getChangeScene() { return changeSceneEventType; }
-
 	SDL_Renderer* getRenderer();
+
 	void RenderPlayer(float scale = 1.0f);
 	void Run();
     void LoadScene( int i );

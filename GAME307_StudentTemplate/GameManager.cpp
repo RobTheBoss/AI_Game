@@ -198,7 +198,7 @@ void GameManager::RenderPlayer(float scale)
 
 void GameManager::LoadScene( int i )
 {
-    // cleanup of current scene before loading anothe one
+    // cleanup of current scene before loading another one
     currentScene->OnDestroy();
     delete currentScene;
     switch ( i )

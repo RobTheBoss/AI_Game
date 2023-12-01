@@ -73,9 +73,9 @@ bool Scene1::OnCreate() {
 	xAxis = game->getSceneWidth();
 	yAxis = game->getSceneHeight();
 
-	grid = std::make_unique<Grid>(3.0f, 3.0f, 50, 70, this);
+	grid = std::make_unique<Grid>(3.0f, 3.0f, this);
 
-	grid->createTiles(6, 6);
+	grid->createTiles(17,20);
 	grid->createGraph();
 	grid->calculateConnectionWeights();
 
@@ -107,11 +107,13 @@ void Scene1::Update(const float deltaTime) {
 
 	hunter->Update(deltaTime);
 
+	grid->playerTileCollision();
 
 	// Update player
 	game->getPlayer()->Update(deltaTime);
 
 	darkness->setPos(game->getPlayer()->getPos());
+
 }
 
 void Scene1::Render() {
@@ -130,8 +132,6 @@ void Scene1::Render() {
 
 	//render darkness
 	darkness->render(1.0f);
-
-	grid->playerTileCollision();
 
 	SDL_RenderPresent(renderer);
 }
