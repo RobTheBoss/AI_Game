@@ -28,10 +28,12 @@ public:
 	void Render();
 	std::vector<int> findPath(int startNode_, int endNode_)
 	{
-		std::vector<int> temp = graph->Dijkstra(startNode_, endNode_);
+		//std::vector<int> temp = graph->Dijkstra(startNode_, endNode_);
 		return graph->Dijkstra(startNode_, endNode_);
 	}
 	void SetWalls();
+	int getCurrentTileIndexStandingOn(Body* body_);
+	Graph* getGraph() { return graph; }
 };
 
 #endif // !GRID_H

@@ -1,7 +1,7 @@
 #pragma once
 #include "DecisionTreeNode.h"
 
-enum class ACTION_SET {Seek, Arrive, Flee, Do_Nothing};
+enum class ACTION_SET {Seek, Arrive, Flee, Follow, Do_Nothing};
 
 class Action :
     public DecisionTreeNode

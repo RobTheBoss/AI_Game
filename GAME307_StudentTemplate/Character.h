@@ -16,12 +16,14 @@ using namespace std;
 class Character
 {
 private:
-	class KinematicBody* body;
 	class Scene* scene;
 	DecisionTreeNode* decisionTree;
 	SDL_Rect* square;
+	class Path* path;
 
 public:
+	int startNode, endNode;
+	class KinematicBody* body;
 	Character()
 	{
 		body = NULL;
@@ -46,6 +48,8 @@ public:
 	void SteerToSeekPlayer(SteeringOutput* steering_);
 	void SteerToFleePlayer(SteeringOutput* steering_);
 	void SteerToArrivePlayer(SteeringOutput* steering_);
+	void SteerToPathfind(SteeringOutput* steering_);
+	void SetPath(int startNode_, int endNode_);
 	bool readDecisionTreeFromFile(string file);
 	void setAction(Action* action_);
 	Vec3 getPos() { return body->getPos(); }
@@ -54,6 +58,7 @@ public:
 	Vec3 getVel() { return body->getVel(); }
 	void setVelX(float x) { body->SetVel(Vec3(x, body->getVel().y, 0.0f)); }
 	void setVelY(float y) { body->SetVel(Vec3(body->getVel().x, y, 0.0f)); }
+	void SetPos(Vec3 pos_) { body->setPos(pos_); }
 
 };
 

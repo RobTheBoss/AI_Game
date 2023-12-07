@@ -1,6 +1,9 @@
 #include "Scene1.h"
 #include "KinematicSeek.h"
 #include "SDL_rect.h"
+#include "Path.h"
+#include "SteeringBehaviour.h"
+#include "FollowAPath.h"
 
 Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_){
 	window = sdlWindow_;
@@ -48,12 +51,7 @@ bool Scene1::OnCreate() {
 	{
 		return false;
 	}
-
-	hunter2 = std::make_unique<StaticBody>(Vec3(0,0,0), 0.0f, 3.0f, 1.0f);
-	if (!hunter2->OnCreate(this) || !hunter2->setTextureWith("Sprites/FaceThing.png"))
-	{
-		return false;
-	}
+	hunter->SetPos(Vec3(0,0,0));
 
 	darkness = std::make_unique<StaticImage>(Vec3(12.0f, 7.5f, 0));
 	if (!darkness->OnCreate(this) || !darkness->setTextureWith("Sprites/Darkness.png"))
@@ -75,14 +73,14 @@ bool Scene1::OnCreate() {
 
 	grid = std::make_unique<Grid>(3.0f, 3.0f, this);
 
-	grid->createTiles(18,21);
+	grid->createTiles(22,19);
 	grid->createGraph();
 	grid->calculateConnectionWeights();
 
-	grid->findPath(5, 25); //temporary (in game findPath will be used in the FollowAPath Class)
+	//grid->findPath(20, 58); //temporary (in game findPath will be used in the FollowAPath Class)
 	
-
-	//std::vector<int> path = graph->Dijkstra(0, 4);
+	std::vector<int> path = grid->findPath(20, 49);
+	hunter->SetPath(20, 49);
 
 	return true;
 }
@@ -108,7 +106,7 @@ void Scene1::Update(const float deltaTime) {
 	hunter->Update(deltaTime);
 
 	grid->playerTileCollision();
-	grid->enemyTileCollision(hunter.get());
+	//grid->enemyTileCollision(hunter.get());
 
 	// Update player
 	game->getPlayer()->Update(deltaTime);
@@ -129,7 +127,6 @@ void Scene1::Render() {
 
 	//render npc
 	hunter->render(0.2f);
-	hunter2->Render(0.2f);
 
 	//render darkness
 	darkness->render(1.0f);

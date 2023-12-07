@@ -4,12 +4,11 @@
 #include "Arrive.h"
 #include "Path.h"
 
-class FollowAPath : Arrive {
+class FollowAPath : public Arrive {
 	Path* path;
 
 public:
-	FollowAPath(Body* npc_, Body* target_);
-	FollowAPath(Body* npc_, Vec3 target_);
+	FollowAPath(Body* npc_, Body* target_, Path* path_);
 	~FollowAPath();
 
 	SteeringOutput* GetSteering();

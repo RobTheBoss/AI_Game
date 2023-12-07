@@ -1,12 +1,12 @@
 #include "Arrive.h"
 
-Arrive::Arrive(Body* npc_, Body* target_) : maxAcceleration(5.0f), maxSpeed(3.0f), targetRadius(0.5f), slowRadius(2.0f), timeToTarget(0.2f)
+Arrive::Arrive(Body* npc_, Body* target_) : maxAcceleration(5.0f), maxSpeed(3.0f), targetRadius(0.2f), slowRadius(2.0f), timeToTarget(0.2f)
 {
 	npc = npc_;
 	target = target_;
 }
 
-Arrive::Arrive(Body* npc_, Vec3 target_) : maxAcceleration(5.0f), maxSpeed(3.0f), targetRadius(0.5f), slowRadius(2.0f), timeToTarget(0.2f)
+Arrive::Arrive(Body* npc_, Vec3 target_) : maxAcceleration(5.0f), maxSpeed(3.0f), targetRadius(0.2f), slowRadius(2.0f), timeToTarget(0.2f)
 {
 	npc = npc_;
 	target = nullptr;

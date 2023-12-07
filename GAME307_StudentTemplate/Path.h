@@ -7,18 +7,22 @@
 
 class Path {
 private:
-	Tile* currentTile;
+	Node* currentNode;
 	int currentIndex;
 	std::vector<Node*> pathNodes;
 
 public:
-	Path(std::vector<Node*> pathNodes_) { pathNodes = pathNodes_; }
+	Path(std::vector<Node*> pathNodes_) 
+	{ 
+		pathNodes = pathNodes_;
+		currentIndex = 0;
+		currentNode = pathNodes[currentIndex];
+	}
 
 	void IncrementNode();
-	Vec3 getCurrentTilePosition();
+	Vec3 getCurrentNodePosition();
 	
 
-	Path();
 	~Path();
 };
 

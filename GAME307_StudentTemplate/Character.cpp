@@ -2,7 +2,10 @@
 #include "Seek.h"
 #include "Flee.h"
 #include "Arrive.h"
+#include "FollowAPath.h"
 #include "Action.h"
+#include "Scene1.h"
+#include "Path.h"
 
 
 bool Character::OnCreate(Scene* scene_)
@@ -72,7 +75,7 @@ void Character::Update(float deltaTime)
 	SteeringOutput* steering = new SteeringOutput();
 
 	//Action* action = static_cast<Action*>(decisionTree->makeDecision());
-	Action* action = new Action(ACTION_SET::Arrive);
+	Action* action = new Action(ACTION_SET::Follow);
 
 	switch (action->getLabel())
 	{
@@ -84,6 +87,9 @@ void Character::Update(float deltaTime)
 		break;
 	case ACTION_SET::Flee:
 		SteerToFleePlayer(steering);
+		break;
+	case ACTION_SET::Follow:
+		SteerToPathfind(steering);
 		break;
 	case ACTION_SET::Do_Nothing:
 		break;
@@ -222,6 +228,50 @@ void Character::SteerToArrivePlayer(SteeringOutput* steering_)
 
 	if (steering_algo)
 		delete steering_algo;
+}
+
+void Character::SteerToPathfind(SteeringOutput* steering_)
+{
+	std::vector<SteeringOutput*> steeringOutputs;
+
+	// set the target for steering; target is used by the steerTo... functions
+	// (often the target is the Player)
+
+	//PlayerBody* target = scene->game->getPlayer();
+	// using the target, calculate and set values in the overall steering output
+	SteeringBehaviour* steering_algo = new FollowAPath(body, nullptr, path);
+	//*steering_ = *(steering_algo->GetSteering());
+	steeringOutputs.push_back(steering_algo->GetSteering());
+
+	//add another behaviour...
+	//create the algo instance
+	//push GetSteering() into our list
+
+	//add together steering outputs
+	for (int i = 0; i < steeringOutputs.size(); i++)
+	{
+		if (steeringOutputs[i])
+		{
+			*steering_ += *steeringOutputs[i];
+		}
+	}
+
+	if (steering_algo)
+		delete steering_algo;
+}
+
+void Character::SetPath(int startNode_, int endNode_)
+{
+	startNode = startNode_;
+	endNode = endNode_;
+
+	std::vector<int> pathInts = dynamic_cast<Scene1*>(scene)->getGrid()->findPath(startNode, endNode);
+
+	std::vector<Node*> nodes;
+	for (auto label : pathInts)
+		nodes.push_back(dynamic_cast<Scene1*>(scene)->getGrid()->getGraph()->getNode(label));
+
+	path = new Path(nodes);
 }
 
 bool Character::readDecisionTreeFromFile(string file)

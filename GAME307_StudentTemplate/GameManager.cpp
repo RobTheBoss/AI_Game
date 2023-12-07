@@ -47,7 +47,7 @@ bool GameManager::OnCreate() {
     float rotation = 0.0f;
     float angular = 0.0f;
     // These are not very good defaults, but they will prevent compiler warnings.
-    float maxSpeed = 5.0f;
+    float maxSpeed = 15.0f;
     float maxAcceleration = 10.0f;
     float maxRotation = 1.0f;
     float maxAngular = 1.0f;

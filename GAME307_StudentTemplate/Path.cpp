@@ -1,10 +1,5 @@
 #include "Path.h"
 
-Path::Path()
-{
-
-}
-
 Path::~Path()
 {
 }
@@ -21,9 +16,10 @@ void Path::IncrementNode()
 		currentIndex = 0;
 	}
 
+	currentNode = pathNodes[currentIndex];
 }
 
-Vec3 Path::getCurrentTilePosition()
+Vec3 Path::getCurrentNodePosition()
 {
-	return currentTile->getPos();
+	return currentNode->GetTile()->getPos();
 }

@@ -24,7 +24,6 @@ private:
     Matrix4 inverseProjection;
 
 	std::unique_ptr<Character> hunter;
-	std::unique_ptr<StaticBody> hunter2;
 	std::unique_ptr<StaticImage> darkness;
 
 	std::unique_ptr<Grid> grid;
@@ -52,6 +51,7 @@ public:
 	SDL_Window* getWindow() { return window; }
     Matrix4 getProjectionMatrix() { return projectionMatrix; }
 	Matrix4 getInverseMatrix() { return inverseProjection; }
+	Grid* getGrid() { return grid.get(); }
 };
 
 #endif
