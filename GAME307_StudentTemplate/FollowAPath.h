@@ -6,9 +6,11 @@
 
 class FollowAPath : public Arrive {
 	Path* path;
+	bool pathComplete = false;
+	Body* npc;
 
 public:
-	FollowAPath(Body* npc_, Body* target_, Path* path_);
+	FollowAPath(Body* npc_, Body* target_, Path*& path_);
 	~FollowAPath();
 
 	SteeringOutput* GetSteering();

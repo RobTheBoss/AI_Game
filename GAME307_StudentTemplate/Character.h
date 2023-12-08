@@ -59,6 +59,7 @@ public:
 	void setVelX(float x) { body->SetVel(Vec3(x, body->getVel().y, 0.0f)); }
 	void setVelY(float y) { body->SetVel(Vec3(body->getVel().x, y, 0.0f)); }
 	void SetPos(Vec3 pos_) { body->setPos(pos_); }
+	bool getPathComplete();
 
 };
 

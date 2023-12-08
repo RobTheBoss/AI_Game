@@ -13,7 +13,8 @@ void Path::IncrementNode()
 	//if the current node is greater than the size of the path, reset the current node to 0
 	if (currentIndex >= pathNodes.size())
 	{
-		currentIndex = pathNodes.size() - 1;
+		currentIndex = 0;
+		pathComplete = true;
 	}
 
 	currentNode = pathNodes[currentIndex];

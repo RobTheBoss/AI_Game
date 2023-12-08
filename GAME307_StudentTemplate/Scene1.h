@@ -28,6 +28,9 @@ private:
 
 	std::unique_ptr<Grid> grid;
 
+	std::vector<struct Pathway> paths;
+	int currentPath = 0;
+
 	//Graph* graph;
 	//std::vector<Node*> sceneNodes;
 
@@ -54,4 +57,11 @@ public:
 	Grid* getGrid() { return grid.get(); }
 };
 
+struct Pathway {
+public:
+	Pathway(int start_, int end_) { start = start_, end = end_; }
+
+	int start;
+	int end;
+};
 #endif

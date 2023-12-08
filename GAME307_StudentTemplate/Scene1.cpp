@@ -76,10 +76,13 @@ bool Scene1::OnCreate() {
 	grid->createTiles(22,19);
 	grid->createGraph();
 	grid->calculateConnectionWeights();
-
-	//grid->findPath(20, 58); //temporary (in game findPath will be used in the FollowAPath Class)
 	
-	hunter->SetPath(20, 388);
+	paths.push_back(Pathway(20, 388));
+	paths.push_back(Pathway(388, 244));
+	paths.push_back(Pathway(244, 54));
+	paths.push_back(Pathway(54, 20));
+
+	hunter->SetPath(paths[0].start, paths[0].end);
 
 	return true;
 }
@@ -103,6 +106,14 @@ void Scene1::Update(const float deltaTime) {
 	projectionMatrix = ndc * ortho;
 
 	hunter->Update(deltaTime);
+	if (hunter->getPathComplete())
+	{
+		currentPath++;
+		if (currentPath >= paths.size())
+			currentPath = 0;
+
+		hunter->SetPath(paths[currentPath].start, paths[currentPath].end);
+	}
 
 	grid->playerTileCollision();
 	//grid->enemyTileCollision(hunter.get());

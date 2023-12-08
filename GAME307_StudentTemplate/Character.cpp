@@ -74,8 +74,7 @@ void Character::Update(float deltaTime)
 	// create a new overall steering output
 	SteeringOutput* steering = new SteeringOutput();
 
-	//Action* action = static_cast<Action*>(decisionTree->makeDecision());
-	Action* action = new Action(ACTION_SET::Follow);
+	Action* action = static_cast<Action*>(decisionTree->makeDecision());
 
 	switch (action->getLabel())
 	{
@@ -88,10 +87,11 @@ void Character::Update(float deltaTime)
 	case ACTION_SET::Flee:
 		SteerToFleePlayer(steering);
 		break;
-	case ACTION_SET::Follow:
+	case ACTION_SET::Pathfind:
 		SteerToPathfind(steering);
 		break;
 	case ACTION_SET::Do_Nothing:
+		body->SetVel(Vec3(0.0f, 0.0f, 0.0f));
 		break;
 	}
 
@@ -281,8 +281,8 @@ bool Character::readDecisionTreeFromFile(string file)
 		//if player is within 2 units of blinky, blinky will seek player
 		// otherwise, do nothing
 
-		Action* trueNode = new Action(ACTION_SET::Arrive);
-		Action* falseNode = new Action(ACTION_SET::Do_Nothing);
+		DecisionTreeNode* trueNode = new Action(ACTION_SET::Do_Nothing);
+		DecisionTreeNode* falseNode = new Action(ACTION_SET::Pathfind);
 		decisionTree = new PlayerInRange(trueNode, falseNode, this);
 
 		return true;
@@ -293,4 +293,9 @@ bool Character::readDecisionTreeFromFile(string file)
 void Character::setAction(Action* action_)
 {
 	decisionTree = action_;
+}
+
+bool Character::getPathComplete()
+{
+	return path->pathComplete;
 }

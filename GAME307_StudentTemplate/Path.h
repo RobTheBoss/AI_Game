@@ -12,6 +12,7 @@ private:
 	std::vector<Node*> pathNodes;
 
 public:
+	bool pathComplete = false;
 	Path(std::vector<Node*> pathNodes_) 
 	{ 
 		pathNodes = pathNodes_;
