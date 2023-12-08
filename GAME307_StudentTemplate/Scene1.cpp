@@ -51,7 +51,7 @@ bool Scene1::OnCreate() {
 	{
 		return false;
 	}
-	hunter->SetPos(Vec3(0,0,0));
+	hunter->SetPos(Vec3(4.5f,1.5f,0));
 
 	darkness = std::make_unique<StaticImage>(Vec3(12.0f, 7.5f, 0));
 	if (!darkness->OnCreate(this) || !darkness->setTextureWith("Sprites/Darkness.png"))
@@ -79,8 +79,7 @@ bool Scene1::OnCreate() {
 
 	//grid->findPath(20, 58); //temporary (in game findPath will be used in the FollowAPath Class)
 	
-	std::vector<int> path = grid->findPath(20, 49);
-	hunter->SetPath(20, 49);
+	hunter->SetPath(20, 388);
 
 	return true;
 }

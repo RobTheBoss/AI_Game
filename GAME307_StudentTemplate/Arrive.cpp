@@ -36,7 +36,8 @@ SteeringOutput* Arrive::GetSteering()
 		direction = target2 - npc->getPos();
 		distance = VMath::mag(direction);
 	}
-	direction = VMath::normalize(direction);
+	if (VMath::mag(direction) > VERY_SMALL)
+		direction = VMath::normalize(direction);
 
 	//check if we are there. Return no steering
 	if (distance < targetRadius)

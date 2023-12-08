@@ -13,7 +13,7 @@ void Path::IncrementNode()
 	//if the current node is greater than the size of the path, reset the current node to 0
 	if (currentIndex >= pathNodes.size())
 	{
-		currentIndex = 0;
+		currentIndex = pathNodes.size() - 1;
 	}
 
 	currentNode = pathNodes[currentIndex];
@@ -21,5 +21,8 @@ void Path::IncrementNode()
 
 Vec3 Path::getCurrentNodePosition()
 {
-	return currentNode->GetTile()->getPos();
+	Vec3 pos;
+	pos.x = currentNode->GetTile()->getPos().x + (currentNode->GetTile()->getWidth() / 2);
+	pos.y = currentNode->GetTile()->getPos().y - (currentNode->GetTile()->getHeight() / 2);
+	return pos;
 }

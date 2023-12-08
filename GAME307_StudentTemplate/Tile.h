@@ -34,6 +34,8 @@ public:
 	Node* getNode() { return node; }
 	Vec3 getPos() { return pos; }
 	SDL_Rect* getRect() { return &rect; }
+	float getWidth() { return width; }
+	float getHeight() { return height; }
 };
 
 #endif
