@@ -14,7 +14,7 @@ Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_){
 
 	// create a NPC
 	hunter = nullptr;
-	//myNPC = nullptr;
+	ghost = nullptr;
 }
 
 Scene1::~Scene1(){
@@ -53,6 +53,13 @@ bool Scene1::OnCreate() {
 	}
 	hunter->SetPos(Vec3(4.5f,1.5f,0));
 
+	ghost = std::make_unique<Character>();
+	if (!ghost->OnCreate(this) || !ghost->setTextureWith("Sprites/FaceThing.png"))
+	{
+		return false;
+	}
+	ghost->SetVisibility(false);
+
 	darkness = std::make_unique<StaticImage>(Vec3(12.0f, 7.5f, 0));
 	if (!darkness->OnCreate(this) || !darkness->setTextureWith("Sprites/Darkness.png"))
 	{
@@ -60,6 +67,9 @@ bool Scene1::OnCreate() {
 	}
 
 	if (!hunter->readDecisionTreeFromFile("hunter"))
+		return false;
+
+	if (!ghost->readDecisionTreeFromFile("ghost"))
 		return false;
 
 	Vec3 position = Vec3(5.0f, 1.0f, 0.0f);
@@ -115,6 +125,8 @@ void Scene1::Update(const float deltaTime) {
 		hunter->SetPath(paths[currentPath].start, paths[currentPath].end);
 	}
 
+	ghost->Update(deltaTime);
+
 	grid->playerTileCollision();
 	//grid->enemyTileCollision(hunter.get());
 
@@ -137,6 +149,9 @@ void Scene1::Render() {
 
 	//render npc
 	hunter->render(0.2f);
+
+	//render npc
+	ghost->render(0.2f);
 
 	//render darkness
 	darkness->render(1.0f);

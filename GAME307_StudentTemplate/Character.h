@@ -20,6 +20,7 @@ private:
 	DecisionTreeNode* decisionTree;
 	SDL_Rect* square;
 	class Path* path;
+	bool visible = true;
 
 public:
 	int startNode, endNode;
@@ -60,7 +61,8 @@ public:
 	void setVelY(float y) { body->SetVel(Vec3(body->getVel().x, y, 0.0f)); }
 	void SetPos(Vec3 pos_) { body->setPos(pos_); }
 	bool getPathComplete();
-
+	void SpawnGhost();
+	void SetVisibility(bool visibility_) { visible = visibility_; }
 };
 
 #endif

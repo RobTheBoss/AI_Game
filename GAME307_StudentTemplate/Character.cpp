@@ -71,6 +71,9 @@ bool Character::setTextureWith(string file)
 
 void Character::Update(float deltaTime)
 {
+	if (!visible)
+		return;
+
 	// create a new overall steering output
 	SteeringOutput* steering = new SteeringOutput();
 
@@ -89,6 +92,10 @@ void Character::Update(float deltaTime)
 		break;
 	case ACTION_SET::Pathfind:
 		SteerToPathfind(steering);
+		break;
+	case ACTION_SET::SpawnEnemy:
+		body->SetVel(Vec3());
+		SpawnGhost();
 		break;
 	case ACTION_SET::Do_Nothing:
 		body->SetVel(Vec3(0.0f, 0.0f, 0.0f));
@@ -112,6 +119,9 @@ void Character::HandleEvents(const SDL_Event& event)
 
 void Character::render(float scale)
 {
+	if (!visible)
+		return;
+
 	SDL_Renderer* renderer = scene->game->getRenderer();
 	Matrix4 projectionMatrix = scene->getProjectionMatrix();
 
@@ -280,9 +290,19 @@ bool Character::readDecisionTreeFromFile(string file)
 	{
 		//if player is within 2 units of blinky, blinky will seek player
 		// otherwise, do nothing
-
-		DecisionTreeNode* trueNode = new Action(ACTION_SET::Do_Nothing);
+		DecisionTreeNode* trueNode = new Action(ACTION_SET::SpawnEnemy);
 		DecisionTreeNode* falseNode = new Action(ACTION_SET::Pathfind);
+		decisionTree = new PlayerInRange(trueNode, falseNode, this);
+
+		return true;
+	}
+
+	if (file == "ghost")
+	{
+		//if player is within 2 units of blinky, blinky will seek player
+		// otherwise, do nothing
+		DecisionTreeNode* trueNode = new Action(ACTION_SET::Arrive);
+		DecisionTreeNode* falseNode = new Action(ACTION_SET::Seek);
 		decisionTree = new PlayerInRange(trueNode, falseNode, this);
 
 		return true;
@@ -298,4 +318,16 @@ void Character::setAction(Action* action_)
 bool Character::getPathComplete()
 {
 	return path->pathComplete;
+}
+
+void Character::SpawnGhost()
+{
+	Scene1* temp = dynamic_cast<Scene1*>(scene);
+	
+	if (temp->ghostSpawned)
+		return;
+
+	temp->ghostSpawned = true;
+	temp->SpawnEnemy(body->getPos());
+	temp = nullptr;
 }

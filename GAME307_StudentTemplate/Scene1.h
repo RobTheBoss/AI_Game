@@ -24,12 +24,15 @@ private:
     Matrix4 inverseProjection;
 
 	std::unique_ptr<Character> hunter;
+	std::unique_ptr<Character> ghost;
+
 	std::unique_ptr<StaticImage> darkness;
 
 	std::unique_ptr<Grid> grid;
 
 	std::vector<struct Pathway> paths;
 	int currentPath = 0;
+
 
 	//Graph* graph;
 	//std::vector<Node*> sceneNodes;
@@ -42,6 +45,8 @@ private:
 	//void calculateConnectionWeights();
 
 public:
+	bool ghostSpawned = false;
+
 	Scene1(SDL_Window* sdlWindow, GameManager* game_);
 	~Scene1();
 	bool OnCreate();
@@ -55,6 +60,11 @@ public:
     Matrix4 getProjectionMatrix() { return projectionMatrix; }
 	Matrix4 getInverseMatrix() { return inverseProjection; }
 	Grid* getGrid() { return grid.get(); }
+	void SpawnEnemy(Vec3 pos_)
+	{
+		ghost->SetVisibility(true);
+		ghost->SetPos(pos_);
+	}
 };
 
 struct Pathway {
