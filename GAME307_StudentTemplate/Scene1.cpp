@@ -54,7 +54,7 @@ bool Scene1::OnCreate() {
 	hunter->SetPos(Vec3(4.5f,1.5f,0));
 
 	ghost = std::make_unique<Character>();
-	if (!ghost->OnCreate(this) || !ghost->setTextureWith("Sprites/FaceThing.png"))
+	if (!ghost->OnCreate(this) || !ghost->setTextureWith("Sprites/Clyde.png"))
 	{
 		return false;
 	}
@@ -72,11 +72,14 @@ bool Scene1::OnCreate() {
 	if (!ghost->readDecisionTreeFromFile("ghost"))
 		return false;
 
-	Vec3 position = Vec3(5.0f, 1.0f, 0.0f);
-	float orientation = 0.0f;
-	float maxSpeed = 1.0f;
-	float maxAcceleration = 1.0f;
-	float maxRotation = 1.0f;
+	weapon = std::make_unique<Weapon>(Vec3(5.0f, 5.0f, 0.0f), this);
+
+	std::vector<Vec3> possiblePositions;
+	possiblePositions.push_back(Vec3(5.0f, 5.0f, 0.0f));
+	possiblePositions.push_back(Vec3(10.0f, 15.0f, 0.0f));
+	possiblePositions.push_back(Vec3(20.0f, 3.0f, 0.0f));
+
+	weapon->setPossiblePositions(possiblePositions);
 
 	xAxis = game->getSceneWidth();
 	yAxis = game->getSceneHeight();
@@ -132,9 +135,11 @@ void Scene1::Update(const float deltaTime) {
 
 	// Update player
 	game->getPlayer()->Update(deltaTime);
+	game->getPlayer()->checkCollision(ghost.get());
 
 	darkness->setPos(game->getPlayer()->getPos());
 
+	weapon->CheckCollision(game->getPlayer()->getSDL_Rect());
 }
 
 void Scene1::Render() {
@@ -148,13 +153,15 @@ void Scene1::Render() {
 	game->RenderPlayer(0.5f);
 
 	//render npc
-	hunter->render(0.2f);
+	ghost->render(0.2f);
 
 	//render npc
-	ghost->render(0.2f);
+	hunter->render(0.2f);
 
 	//render darkness
 	darkness->render(1.0f);
+
+	weapon->Render(0.2f);
 
 	SDL_RenderPresent(renderer);
 }

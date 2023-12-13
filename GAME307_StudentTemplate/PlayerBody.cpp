@@ -6,6 +6,7 @@
 //
 
 #include "PlayerBody.h"
+#include "Character.h"
 
 bool PlayerBody::OnCreate()
 {
@@ -196,4 +197,13 @@ void PlayerBody::Update( float deltaTime )
 void PlayerBody::resetToOrigin()
 {
     pos = Vec3( 0.0f + radius, 0.0f + radius, 0.0f );
+}
+
+void PlayerBody::checkCollision(Character* ghost_)
+{
+    if (SDL_HasIntersection(&square, ghost_->getRect()) /* && hasWeapon*/)
+    {
+        hasWeapon = false;
+        ghost_->SetVisibility(false);
+    }
 }

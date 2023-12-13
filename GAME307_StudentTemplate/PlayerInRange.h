@@ -5,9 +5,17 @@
 class PlayerInRange :
     public Decision
 {
+private:
+	float distance;
 public:
-	PlayerInRange() : Decision() {}
-	PlayerInRange(DecisionTreeNode* trueBranch_, DecisionTreeNode* falseBranch_, Character* owner_) : Decision(trueBranch_, falseBranch_, owner_) {}
+	PlayerInRange(float distance_) : Decision() 
+	{
+		distance = distance_;
+	}
+	PlayerInRange(DecisionTreeNode* trueBranch_, DecisionTreeNode* falseBranch_, float distance_, Character* owner_) : Decision(trueBranch_, falseBranch_, owner_) 
+	{
+		distance = distance_;
+	}
 	~PlayerInRange() {}
 
 	bool testValue();

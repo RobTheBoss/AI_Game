@@ -292,7 +292,7 @@ bool Character::readDecisionTreeFromFile(string file)
 		// otherwise, do nothing
 		DecisionTreeNode* trueNode = new Action(ACTION_SET::SpawnEnemy);
 		DecisionTreeNode* falseNode = new Action(ACTION_SET::Pathfind);
-		decisionTree = new PlayerInRange(trueNode, falseNode, this);
+		decisionTree = new PlayerInRange(trueNode, falseNode, 3.0f, this);
 
 		return true;
 	}
@@ -303,7 +303,7 @@ bool Character::readDecisionTreeFromFile(string file)
 		// otherwise, do nothing
 		DecisionTreeNode* trueNode = new Action(ACTION_SET::Arrive);
 		DecisionTreeNode* falseNode = new Action(ACTION_SET::Seek);
-		decisionTree = new PlayerInRange(trueNode, falseNode, this);
+		decisionTree = new PlayerInRange(trueNode, falseNode, 5.0f, this);
 
 		return true;
 	}
@@ -325,7 +325,10 @@ void Character::SpawnGhost()
 	Scene1* temp = dynamic_cast<Scene1*>(scene);
 	
 	if (temp->ghostSpawned)
+	{
+		temp->setGhostVisible(true);
 		return;
+	}
 
 	temp->ghostSpawned = true;
 	temp->SpawnEnemy(body->getPos());

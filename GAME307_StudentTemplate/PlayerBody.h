@@ -19,6 +19,8 @@ protected:
     SDL_Rect square;
 
 public:
+    bool hasWeapon = false;
+
     PlayerBody() : Body{}
     {
         game = nullptr;
@@ -67,6 +69,8 @@ public:
     SDL_Rect* getSDL_Rect() { return &square; }  
     void setVelX(float x) { vel.x = x; }
     void setVelY(float y) { vel.y = y; }
+
+    void checkCollision(class Character* ghost_);
 };
 
 #endif /* PLAYERBODY_H */
