@@ -1,24 +1,24 @@
-#ifndef PLAYERINRANGE_H
-#define PLAYERINRANGE_H
+#ifndef PLAYER_IN_RANGE_H
+#define PLAYER_IN_RANGE_H
 
 #include "Decision.h"
 class PlayerInRange :
     public Decision
 {
 private:
-	float distance;
+	//float distance;
 public:
 	PlayerInRange(float distance_) : Decision() 
 	{
-		distance = distance_;
+		
 	}
-	PlayerInRange(DecisionTreeNode* trueBranch_, DecisionTreeNode* falseBranch_, float distance_, Character* owner_) : Decision(trueBranch_, falseBranch_, owner_) 
+	PlayerInRange(DecisionTreeNode* trueBranch_, DecisionTreeNode* falseBranch_, Character* owner_) : Decision(trueBranch_, falseBranch_, owner_) 
 	{
-		distance = distance_;
+		owner = owner_;
 	}
 	~PlayerInRange() {}
 
 	bool testValue();
 };
 
-#endif // !PLAYERINRANGE_H
+#endif  PLAYER_IN_RANGE_H

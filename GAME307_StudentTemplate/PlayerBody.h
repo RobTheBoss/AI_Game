@@ -70,7 +70,8 @@ public:
     void setVelX(float x) { vel.x = x; }
     void setVelY(float y) { vel.y = y; }
 
-    void checkCollision(class Character* ghost_);
+    bool checkCollisionGhost(class Character* ghost_);
+    bool checkCollisionHunter(class Character* enemy_);
 };
 
 #endif /* PLAYERBODY_H */

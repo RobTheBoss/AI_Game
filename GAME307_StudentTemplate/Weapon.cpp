@@ -1,15 +1,24 @@
 #include "Weapon.h"
 
-Weapon::Weapon(Vec3 startingPos_, Scene* scene_)
+Weapon::Weapon(std::vector<Vec3> possibleLocations_, Scene* scene_)
 {
-	SDL_Surface* image = IMG_Load("Sprites/Blinky.png");
+	SDL_Surface* image = IMG_Load("Sprites/Ring.png");
 	if (image == nullptr) {
 		std::cerr << "Can't open the image" << std::endl;
 		return;
 	}
 
 	scene = scene_;
-	pos = startingPos_;
+	possiblePositions = possibleLocations_;
+
+	if (possiblePositions.size() != 0)
+	{
+		int temp = (int)(possiblePositions.size() - 1) * randomFloat();
+
+		pos = possiblePositions[temp];
+	}
+	else
+		pos = Vec3(4.0f, 4.0f, 0.0f);
 
 	window = scene->getWindow();
 	renderer = SDL_GetRenderer(window);
@@ -67,5 +76,13 @@ void Weapon::CheckCollision(SDL_Rect* collisionBox_)
 		pos = possiblePositions[temp];
 
 		scene->game->getPlayer()->hasWeapon = true;
+
+		SDL_Surface* image = IMG_Load("Sprites/Anger.png");
+		SDL_Texture* texture = SDL_CreateTextureFromSurface(scene->game->getRenderer(), image);
+		scene->game->getPlayer()->setImage(image);
+		scene->game->getPlayer()->setTexture(texture);
+
+		/*SDL_FreeSurface(image);
+		SDL_DestroyTexture(texture);*/
 	}
 }

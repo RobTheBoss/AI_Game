@@ -10,6 +10,7 @@
 
 #include "Action.h"
 #include "PlayerInRange.h"
+#include "PlayerHasWeapon.h"
 
 using namespace std;
 
@@ -21,6 +22,7 @@ private:
 	SDL_Rect* square;
 	class Path* path;
 	bool visible = true;
+	int health = 3;
 
 public:
 	int startNode, endNode;
@@ -49,6 +51,7 @@ public:
 	void SteerToSeekPlayer(SteeringOutput* steering_);
 	void SteerToFleePlayer(SteeringOutput* steering_);
 	void SteerToArrivePlayer(SteeringOutput* steering_);
+	void SteerToEvadePlayer(SteeringOutput* steering_);
 	void SteerToPathfind(SteeringOutput* steering_);
 	void SetPath(int startNode_, int endNode_);
 	bool readDecisionTreeFromFile(string file);
@@ -63,6 +66,15 @@ public:
 	bool getPathComplete();
 	void SpawnGhost();
 	void SetVisibility(bool visibility_) { visible = visibility_; }
+	bool getVisibility() { return visible; }
+	class Scene* getScene();
+	void HurtEnemy() 
+	{
+		health -= 1; 
+		if (health <= 0)
+			killEnemy();
+	}
+	void killEnemy();
 };
 
 #endif

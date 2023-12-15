@@ -150,6 +150,7 @@
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Path.cpp" />
     <ClCompile Include="PlayerBody.cpp" />
+    <ClCompile Include="PlayerHasWeapon.cpp" />
     <ClCompile Include="PlayerInRange.cpp" />
     <ClCompile Include="Scene1.cpp" />
     <ClCompile Include="Scene2.cpp" />
@@ -161,6 +162,7 @@
     <ClCompile Include="Steering\SteeringOutput.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -181,6 +183,7 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="PlayerBody.h" />
+    <ClInclude Include="PlayerHasWeapon.h" />
     <ClInclude Include="PlayerInRange.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene1.h" />
@@ -193,6 +196,7 @@
     <ClInclude Include="Steering\SteeringOutput.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Weapon.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

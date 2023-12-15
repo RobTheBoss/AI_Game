@@ -88,6 +88,12 @@
     <ClCompile Include="Evade.cpp">
       <Filter>Source\AI_Movement</Filter>
     </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Headers</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerHasWeapon.cpp">
+      <Filter>Source\Decision Making</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -179,6 +185,12 @@
     </ClInclude>
     <ClInclude Include="Evade.h">
       <Filter>Headers\AI_Movement</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerHasWeapon.h">
+      <Filter>Headers\Decision Making</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

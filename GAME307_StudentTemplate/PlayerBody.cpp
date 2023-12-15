@@ -7,6 +7,7 @@
 
 #include "PlayerBody.h"
 #include "Character.h"
+#include "Scene1.h"
 
 bool PlayerBody::OnCreate()
 {
@@ -199,11 +200,57 @@ void PlayerBody::resetToOrigin()
     pos = Vec3( 0.0f + radius, 0.0f + radius, 0.0f );
 }
 
-void PlayerBody::checkCollision(Character* ghost_)
+bool PlayerBody::checkCollisionGhost(Character* ghost_)
 {
-    if (SDL_HasIntersection(&square, ghost_->getRect()) /* && hasWeapon*/)
+    if (!ghost_->getVisibility())
+        return false;
+
+    if (SDL_HasIntersection(&square, ghost_->getRect()))
     {
-        hasWeapon = false;
-        ghost_->SetVisibility(false);
+        if (hasWeapon)
+        {
+            hasWeapon = false;
+            ghost_->SetVisibility(false);
+
+            image = IMG_Load("Sprites/BlueSquare.png");
+            texture = SDL_CreateTextureFromSurface(game->getRenderer(), image);
+            setImage(image);
+            setTexture(texture);
+
+            /*SDL_FreeSurface(image);
+            SDL_DestroyTexture(texture);*/
+
+            return true;
+        }
+        if (!hasWeapon)
+        {
+            Scene1* temp = dynamic_cast<Scene1*>(game->currentScene);
+            
+            if (temp != nullptr)
+            {
+                temp->gameFinished = true;
+                ghost_->SetVisibility(false);
+
+                return true;
+            }
+        }
     }
+
+    return false;
+}
+
+bool PlayerBody::checkCollisionHunter(Character* enemy_)
+{
+    if (SDL_HasIntersection(&square, enemy_->getRect()) && hasWeapon)
+    {
+        image = IMG_Load("Sprites/BlueSquare.png");
+        texture = SDL_CreateTextureFromSurface(game->getRenderer(), image);
+        setImage(image);
+        setTexture(texture);
+
+        hasWeapon = false;
+        return true;
+    }
+
+    return false;
 }

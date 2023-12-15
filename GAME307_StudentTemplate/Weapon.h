@@ -19,12 +19,12 @@ private:
 
     float randomFloat() { return (float)(rand()) / (float)(RAND_MAX); }
 public:
-    Weapon(Vec3 startingPos_, Scene* scene_);
+    Weapon(std::vector<Vec3> possibleLocations_, Scene* scene_);
     ~Weapon();
 
     void Render(float scale_);
     void CheckCollision(SDL_Rect* collisionBox_);
 
-    void setPossiblePositions(std::vector<Vec3> positions_) { possiblePositions = positions_; }
+    //void setPossiblePositions(std::vector<Vec3> positions_) { possiblePositions = positions_; }
 };
 

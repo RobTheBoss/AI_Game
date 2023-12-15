@@ -2,6 +2,7 @@
 #include "Seek.h"
 #include "Flee.h"
 #include "Arrive.h"
+#include "Evade.h"
 #include "FollowAPath.h"
 #include "Action.h"
 #include "Scene1.h"
@@ -89,6 +90,9 @@ void Character::Update(float deltaTime)
 		break;
 	case ACTION_SET::Flee:
 		SteerToFleePlayer(steering);
+		break;
+	case ACTION_SET::Evade:
+		SteerToEvadePlayer(steering);
 		break;
 	case ACTION_SET::Pathfind:
 		SteerToPathfind(steering);
@@ -240,6 +244,37 @@ void Character::SteerToArrivePlayer(SteeringOutput* steering_)
 		delete steering_algo;
 }
 
+void Character::SteerToEvadePlayer(SteeringOutput* steering_)
+{
+	std::vector<SteeringOutput*> steeringOutputs;
+
+	// set the target for steering; target is used by the steerTo... functions
+	// (often the target is the Player)
+
+	PlayerBody* target = scene->game->getPlayer();
+
+	// using the target, calculate and set values in the overall steering output
+	SteeringBehaviour* steering_algo = new Evade(body, target);
+	//*steering_ = *(steering_algo->GetSteering());
+	steeringOutputs.push_back(steering_algo->GetSteering());
+
+	//add another behaviour...
+	//create the algo instance
+	//push GetSteering() into our list
+
+	//add together steering outputs
+	for (int i = 0; i < steeringOutputs.size(); i++)
+	{
+		if (steeringOutputs[i])
+		{
+			*steering_ += *steeringOutputs[i];
+		}
+	}
+
+	if (steering_algo)
+		delete steering_algo;
+}
+
 void Character::SteerToPathfind(SteeringOutput* steering_)
 {
 	std::vector<SteeringOutput*> steeringOutputs;
@@ -290,9 +325,10 @@ bool Character::readDecisionTreeFromFile(string file)
 	{
 		//if player is within 2 units of blinky, blinky will seek player
 		// otherwise, do nothing
+
 		DecisionTreeNode* trueNode = new Action(ACTION_SET::SpawnEnemy);
 		DecisionTreeNode* falseNode = new Action(ACTION_SET::Pathfind);
-		decisionTree = new PlayerInRange(trueNode, falseNode, 3.0f, this);
+		decisionTree = new PlayerInRange(trueNode, falseNode, this);
 
 		return true;
 	}
@@ -301,9 +337,15 @@ bool Character::readDecisionTreeFromFile(string file)
 	{
 		//if player is within 2 units of blinky, blinky will seek player
 		// otherwise, do nothing
-		DecisionTreeNode* trueNode = new Action(ACTION_SET::Arrive);
-		DecisionTreeNode* falseNode = new Action(ACTION_SET::Seek);
-		decisionTree = new PlayerInRange(trueNode, falseNode, 5.0f, this);
+		DecisionTreeNode* trueNode1 = new Action(ACTION_SET::Evade);
+
+		DecisionTreeNode* trueNode2 = new Action(ACTION_SET::Arrive);
+		DecisionTreeNode* falseNode2 = new Action(ACTION_SET::Seek);
+
+		DecisionTreeNode* falseNode1 = new PlayerInRange(trueNode2, falseNode2, this);
+
+		decisionTree = new PlayerHasWeapon(trueNode1, falseNode1, this);
+		//decisionTree = new PlayerInRange(trueNode, falseNode2, 5.0f, this);
 
 		return true;
 	}
@@ -326,11 +368,21 @@ void Character::SpawnGhost()
 	
 	if (temp->ghostSpawned)
 	{
-		temp->setGhostVisible(true);
 		return;
 	}
 
 	temp->ghostSpawned = true;
 	temp->SpawnEnemy(body->getPos());
 	temp = nullptr;
+}
+
+Scene* Character::getScene()
+{
+	return scene;
+}
+
+void Character::killEnemy()
+{
+	visible = false;
+	dynamic_cast<Scene1*>(scene)->gameFinished = true;
 }

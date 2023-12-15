@@ -22,12 +22,12 @@ private:
 	class Window *windowPtr;
 	class Timer *timer;
 	bool isRunning;
-	class Scene *currentScene;
     class PlayerBody *player;
     Uint32 changeSceneEventType; // event type number for user defined events
     bool launched = true;
 
 public:
+	class Scene *currentScene;
 	GameManager();
 	~GameManager();
 	bool OnCreate();

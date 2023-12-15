@@ -35,7 +35,6 @@ private:
 	std::vector<struct Pathway> paths;
 	int currentPath = 0;
 
-
 	//Graph* graph;
 	//std::vector<Node*> sceneNodes;
 
@@ -47,6 +46,7 @@ private:
 	//void calculateConnectionWeights();
 
 public:
+	bool gameFinished = false;
 	bool ghostSpawned = false;
 
 	Scene1(SDL_Window* sdlWindow, GameManager* game_);
@@ -65,8 +65,8 @@ public:
 
 	void SpawnEnemy(Vec3 pos_)
 	{
-		ghost->SetVisibility(true);
 		ghost->SetPos(pos_);
+		ghost->SetVisibility(true);
 	}
 
 	void setGhostVisible(bool visible) { ghost.get()->SetVisibility(visible); }

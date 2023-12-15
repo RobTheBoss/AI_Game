@@ -6,6 +6,9 @@
 #include "FollowAPath.h"
 
 Scene1::Scene1(SDL_Window* sdlWindow_, GameManager* game_){
+	/* initialize random seed: */
+	srand(time(NULL));
+
 	window = sdlWindow_;
     game = game_;
 	renderer = SDL_GetRenderer(window);
@@ -35,7 +38,6 @@ bool Scene1::OnCreate() {
 	/// Turn on the SDL imaging subsystem
 	IMG_Init(IMG_INIT_PNG);
 
-	// Set player image to PacMan
 	SDL_Surface* image;
 	SDL_Texture* texture;
 
@@ -72,14 +74,15 @@ bool Scene1::OnCreate() {
 	if (!ghost->readDecisionTreeFromFile("ghost"))
 		return false;
 
-	weapon = std::make_unique<Weapon>(Vec3(5.0f, 5.0f, 0.0f), this);
-
 	std::vector<Vec3> possiblePositions;
-	possiblePositions.push_back(Vec3(5.0f, 5.0f, 0.0f));
-	possiblePositions.push_back(Vec3(10.0f, 15.0f, 0.0f));
-	possiblePositions.push_back(Vec3(20.0f, 3.0f, 0.0f));
+	possiblePositions.push_back(Vec3(32.0f, 58.0f, 0.0f));
+	possiblePositions.push_back(Vec3(45.0f, 35.0f, 0.0f));
+	possiblePositions.push_back(Vec3(25.0f, 30.0f, 0.0f));
+	possiblePositions.push_back(Vec3(48.0f, 5.0f, 0.0f));
+	possiblePositions.push_back(Vec3(7.0f, 5.0f, 0.0f));
+	possiblePositions.push_back(Vec3(46.0f, 52.0f, 0.0f));
 
-	weapon->setPossiblePositions(possiblePositions);
+	weapon = std::make_unique<Weapon>(possiblePositions, this);
 
 	xAxis = game->getSceneWidth();
 	yAxis = game->getSceneHeight();
@@ -103,6 +106,9 @@ bool Scene1::OnCreate() {
 void Scene1::OnDestroy() {}
 
 void Scene1::Update(const float deltaTime) {
+	if (gameFinished)
+		return;
+
 	//SDL_Rect rect = game->getPlayer()->getSDL_Rect();
 
 	float left, right, top, bottom;
@@ -135,7 +141,12 @@ void Scene1::Update(const float deltaTime) {
 
 	// Update player
 	game->getPlayer()->Update(deltaTime);
-	game->getPlayer()->checkCollision(ghost.get());
+
+	if (game->getPlayer()->checkCollisionGhost(ghost.get()) || VMath::distance(game->getPlayer()->getPos(), ghost.get()->getPos()) > 10.0f)
+		ghostSpawned = false;
+
+	if (game->getPlayer()->checkCollisionHunter(hunter.get()))
+		hunter.get()->HurtEnemy();
 
 	darkness->setPos(game->getPlayer()->getPos());
 
@@ -161,7 +172,7 @@ void Scene1::Render() {
 	//render darkness
 	darkness->render(1.0f);
 
-	weapon->Render(0.2f);
+	weapon->Render(2.0f);
 
 	SDL_RenderPresent(renderer);
 }
